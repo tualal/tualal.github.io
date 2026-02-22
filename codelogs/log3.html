@@ -1,1 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Media Queries</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        h2 {
+            color: #555;
+            margin-top: 30px;
+        }
+        textarea {
+            display: block;
+            width: 100%;
+            margin: 15px 0;
+            padding: 10px;
+            font-family: monospace;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS Media Queries</h1>
+    
+    <h2>How CSS Media Queries Work and Why They're Useful</h2>
+    
+    <p>A CSS media query is basically a way to apply different styles to your webpage based on certain conditions, like the size of the screen or whether someone is viewing on a phone versus a desktop. They work by checking if specific conditions are true, and if they are, the CSS rules inside the media query get applied.</p>
+    
+    <p>The basic syntax looks like this:</p>
+    
+    <textarea rows="5" readonly>
+@media (condition) {
+    /* CSS rules that only apply when condition is true */
+}
+    </textarea>
+    
+    <p>Media queries are super useful because they let you create responsive designs that work well on different devices. Without media queries, your website would look exactly the same on a phone as it does on a big desktop monitor, which usually means tiny text and awkward layouts on mobile devices. With media queries, you can make your navigation menu collapse into a hamburger icon on phones, adjust font sizes for readability, or reorganize your layout to work better on smaller screens.</p>
+    
+    <p>For example, you might have a three-column layout on desktop that switches to a single column on mobile, or buttons that are small on desktop but bigger and easier to tap on touchscreens. Media queries make all of this possible without having to create completely separate websites for different devices.</p>
+    
+    <h2>Four Useful Media Features</h2>
+    
+    <h3>1. max-width and min-width</h3>
+    
+    <p>The <code>max-width</code> and <code>min-width</code> features are probably the most commonly used media features. They check the width of the viewport (the visible area of the browser window) and apply styles based on whether it's above or below a certain size.</p>
+    
+    <p><code>max-width</code> means "apply these styles when the screen is this wide or smaller." For example, <code>max-width: 768px</code> targets screens that are 768 pixels wide or less, which typically includes tablets and phones. This is useful for making your layout more mobile-friendly.</p>
+    
+    <textarea rows="6" readonly>
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;  /* Hide sidebar on small screens */
+    }
+}
+    </textarea>
+    
+    <p><code>min-width</code> works the opposite way—it means "apply these styles when the screen is this wide or larger." This is useful when you want to add features or complexity only on bigger screens where there's room for them.</p>
+    
+    <textarea rows="6" readonly>
+@media (min-width: 1024px) {
+    .container {
+        max-width: 1200px;  /* Limit width on large screens */
+    }
+}
+    </textarea>
+    
+    <h3>2. orientation</h3>
+    
+    <p>The <code>orientation</code> feature checks whether the device is in portrait mode (taller than it is wide) or landscape mode (wider than it is tall). This is especially useful for tablets and phones that can be rotated.</p>
+    
+    <p>You can use this to adjust your layout when someone rotates their device. For example, you might show more content side-by-side in landscape mode but stack things vertically in portrait mode.</p>
+    
+    <textarea rows="8" readonly>
+@media (orientation: landscape) {
+    .gallery {
+        grid-template-columns: repeat(4, 1fr);  /* 4 columns in landscape */
+    }
+}
 
+@media (orientation: portrait) {
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);  /* 2 columns in portrait */
+    }
+}
+    </textarea>
+    
+    <h3>3. hover</h3>
+    
+    <p>The <code>hover</code> feature detects whether the device supports hovering, like with a mouse. Touchscreen devices don't really have "hover" since you either touch the screen or you don't, so this helps you avoid creating hover effects that won't work on phones and tablets.</p>
+    
+    <p>This is useful because you can create fancy hover effects for desktop users with mice, but skip them entirely on touchscreens where they'd be frustrating or impossible to use.</p>
+    
+    <textarea rows="8" readonly>
+@media (hover: hover) {
+    .button:hover {
+        background-color: blue;  /* Only on devices that support hover */
+    }
+}
+
+@media (hover: none) {
+    .button:active {
+        background-color: blue;  /* Use :active instead on touch devices */
+    }
+}
+    </textarea>
+    
+    <h3>4. prefers-color-scheme</h3>
+    
+    <p>The <code>prefers-color-scheme</code> feature detects if the user has their device set to light mode or dark mode in their system settings. This has become really popular lately as more people use dark mode to reduce eye strain or save battery on OLED screens.</p>
+    
+    <p>You can use this to automatically switch your website to a dark theme when someone has dark mode enabled on their device, giving them a better experience without them having to manually toggle a theme switcher on your site.</p>
+    
+    <textarea rows="12" readonly>
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #1a1a1a;
+        color: #ffffff;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    body {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}
+    </textarea>
+    
+    <h2>Putting It All Together</h2>
+    
+    <p>Media queries are one of the most important tools for responsive web design. They let you adapt your site to different screen sizes, device capabilities, and user preferences. The key is thinking about how your design needs to change in different contexts and using media queries to implement those changes. Most modern websites use multiple media queries together to create layouts that work well everywhere from small phones to huge desktop monitors.</p>
+    
+</body>
+</html>
