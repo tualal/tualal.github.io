@@ -1,1 +1,293 @@
+/* ===================================
+   MOBILE FIRST BASE STYLES
+   =================================== */
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Georgia, serif;
+    line-height: 1.6;
+    color: #2d2d2d;
+    background-color: #f5f5f0;
+}
+
+/* ===================================
+   HERO SECTION
+   =================================== */
+
+.hero {
+    background: linear-gradient(rgba(139, 69, 118, 0.7), rgba(139, 69, 118, 0.7)),
+                url('https://images.unsplash.com/photo-1524506062000-c3d3f2e8d0b7?w=1200') center/cover;
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+    margin-bottom: 30px;
+}
+
+.hero-content h1 {
+    font-size: 2rem;
+    font-weight: normal;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.subtitle {
+    font-style: italic;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.tagline {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 10px;
+}
+
+/* ===================================
+   CONTAINER & SECTIONS
+   =================================== */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: #6b4569;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #d4a5c7;
+    padding-bottom: 10px;
+}
+
+h3 {
+    font-size: 1.3rem;
+    color: #8b4576;
+    margin-bottom: 10px;
+}
+
+h4 {
+    font-size: 1.1rem;
+    color: #6b4569;
+    margin-bottom: 8px;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+/* ===================================
+   INTRO SECTION
+   =================================== */
+
+.intro {
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* ===================================
+   NAMES SECTION
+   =================================== */
+
+.names-section {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.names-list {
+    list-style: none;
+    padding: 0;
+}
+
+.names-list li {
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    background-color: #f0e6ed;
+    border-left: 4px solid #8b4576;
+    border-radius: 4px;
+}
+
+/* ===================================
+   FEATURES GRID (Mobile: Stacked)
+   =================================== */
+
+.features-grid {
+    display: block;
+}
+
+.feature-card {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-top: 4px solid #8b4576;
+}
+
+.feature-card strong {
+    color: #6b4569;
+}
+
+/* ===================================
+   DESCRIPTION SECTION
+   =================================== */
+
+.description {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.char-grid {
+    display: block;
+}
+
+.char-item {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.char-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+/* ===================================
+   HISTORY & CONSERVATION SECTIONS
+   =================================== */
+
+.history,
+.conservation {
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* ===================================
+   FOOTER
+   =================================== */
+
+footer {
+    background-color: #6b4569;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+footer em {
+    font-style: italic;
+}
+
+/* ===================================
+   TABLET BREAKPOINT (min-width: 768px)
+   =================================== */
+
+@media (min-width: 768px) {
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+
+    .subtitle {
+        font-size: 1.3rem;
+    }
+
+    .container {
+        padding: 30px;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    /* Features grid becomes 2 columns on tablet */
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .feature-card {
+        margin-bottom: 0;
+    }
+
+    /* Characteristics grid becomes 2 columns */
+    .char-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+
+    .char-item {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+}
+
+/* ===================================
+   DESKTOP BREAKPOINT (min-width: 1024px)
+   =================================== */
+
+@media (min-width: 1024px) {
+    .hero {
+        padding: 100px 40px;
+    }
+
+    .hero-content h1 {
+        font-size: 3.5rem;
+    }
+
+    .subtitle {
+        font-size: 1.5rem;
+    }
+
+    .tagline {
+        font-size: 1rem;
+    }
+
+    h2 {
+        font-size: 2.2rem;
+    }
+
+    /* Features grid becomes 3 columns on desktop */
+    .features-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+    }
+
+    /* Two-column layout for history and conservation */
+    .history,
+    .conservation {
+        padding: 35px;
+    }
+
+    /* Add hover effects on desktop */
+    .feature-card:hover,
+    .char-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        transition: all 0.3s ease;
+    }
+
+    .names-list li:hover {
+        background-color: #e6d4e0;
+        transition: background-color 0.3s ease;
+    }
+}
