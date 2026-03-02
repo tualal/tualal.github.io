@@ -1,1 +1,101 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Color</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        h2 {
+            color: #555;
+            margin-top: 30px;
+        }
+        textarea {
+            display: block;
+            width: 100%;
+            margin: 15px 0;
+            padding: 10px;
+            font-family: monospace;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS Color</h1>
+    
+    <h2>CSS Color Properties</h2>
+    
+    <p>CSS has three main properties for controlling color on web pages. The <code>color</code> property sets the color of text inside an element. The <code>background-color</code> property sets the background color behind an element's content, creating a colored box or area. The <code>border-color</code> property sets the color of an element's border, though you need to define a border width and style first for it to show up.</p>
+    
+    <textarea rows="6" readonly>
+h1 {
+    color: blue;                /* Text color */
+    background-color: lightgray; /* Background color */
+    border-color: red;          /* Border color */
+}
+    </textarea>
+    
+    <h2>How CSS Accepts Color Values</h2>
+    
+    <p>CSS accepts colors in several different formats, and they all work the same way in your stylesheet.</p>
+    
+    <h3>Named Colors</h3>
+    
+    <p>You can use plain English color names like "red," "blue," or "coral." CSS recognizes 140 standard color names. These are simple to use but limited in options.</p>
+    
+    <textarea rows="4" readonly>
+p {
+    color: crimson;
+    background-color: lightyellow;
+}
+    </textarea>
+    
+    <h3>Hexadecimal Colors</h3>
+    
+    <p>Hex colors start with # followed by 6 characters representing red, green, and blue amounts. The format is <code>#RRGGBB</code> where values go from 00 to FF. For example, <code>#ff0000</code> is pure red, <code>#00ff00</code> is green, and <code>#0000ff</code> is blue. This gives you access to over 16 million colors.</p>
+    
+    <textarea rows="4" readonly>
+h1 {
+    color: #ff5733;
+    background-color: #ffffff;
+}
+    </textarea>
+    
+    <h3>RGB Colors</h3>
+    
+    <p>RGB uses numbers from 0 to 255 for red, green, and blue channels. It's the same concept as hex but written with regular decimal numbers. For example, <code>rgb(255, 0, 0)</code> is red, and <code>rgb(0, 0, 0)</code> is black.</p>
+    
+    <textarea rows="4" readonly>
+div {
+    color: rgb(255, 99, 71);
+    background-color: rgb(240, 240, 240);
+}
+    </textarea>
+    
+    <h3>RGBA Colors</h3>
+    
+    <p>RGBA is like RGB but includes a transparency value from 0 (fully transparent) to 1 (fully opaque). This is useful for semi-transparent backgrounds or overlays.</p>
+    
+    <textarea rows="4" readonly>
+button {
+    background-color: rgba(255, 0, 0, 0.5);  /* 50% transparent red */
+}
+    </textarea>
+    
+    <p>All these color formats work exactly the same in CSS, so you can use whichever one makes sense for your project. Named colors are quick and easy, hex codes are industry standard, RGB is intuitive with regular numbers, and RGBA adds transparency when you need it.</p>
+    
+</body>
+</html>
