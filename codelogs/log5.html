@@ -1,1 +1,94 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Images</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        h2 {
+            color: #555;
+            margin-top: 30px;
+        }
+        textarea {
+            display: block;
+            width: 100%;
+            margin: 15px 0;
+            padding: 10px;
+            font-family: monospace;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>Images in HTML and CSS</h1>
+    
+    <h2>HTML img Tag vs CSS background-image</h2>
+    
+    <p>The <code>&lt;img&gt;</code> tag is used for content images that are important to the page, like product photos or diagrams. These images are part of the document structure, require alt text for accessibility, and take up space in the document flow.</p>
+    
+    <textarea rows="2" readonly>
+<img src="photo.jpg" alt="A chocolate chip cookie">
+    </textarea>
+    
+    <p>The CSS <code>background-image</code> property is for decorative images that enhance design but aren't essential content. These sit behind content, don't affect document flow, don't require alt text, and won't show up in search engines the same way.</p>
+    
+    <textarea rows="3" readonly>
+.hero {
+    background-image: url('banner.jpg');
+}
+    </textarea>
+    
+    <h2>Other CSS Background Properties</h2>
+    
+    <p><strong>background-size:</strong> Controls how big the background image appears. Use <code>cover</code> to fill the entire element or <code>contain</code> to fit the whole image inside without cropping.</p>
+    
+    <textarea rows="2" readonly>
+background-size: cover;
+    </textarea>
+    
+    <p><strong>background-position:</strong> Determines where the image sits within the element, like <code>center</code>, <code>top</code>, or <code>bottom</code>.</p>
+    
+    <textarea rows="2" readonly>
+background-position: center;
+    </textarea>
+    
+    <p><strong>background-repeat:</strong> Controls whether the image repeats. Use <code>no-repeat</code> to show it once, or <code>repeat</code> to tile it.</p>
+    
+    <textarea rows="2" readonly>
+background-repeat: no-repeat;
+    </textarea>
+    
+    <h2>Dimensions vs Resolution</h2>
+    
+    <p><strong>Dimensions refer to the width and height of an image in pixels, while resolution refers to how densely those pixels are packed together when displayed or printed.</strong></p>
+    
+    <h2>Image File Formats (Extra Credit)</h2>
+    
+    <p><strong>JPEG:</strong> Best for photographs. Uses lossy compression for small file sizes but no transparency support.</p>
+    
+    <p><strong>PNG:</strong> Best for graphics and logos. Supports transparency and uses lossless compression, but larger file sizes.</p>
+    
+    <p><strong>GIF:</strong> Best for simple animations. Limited to 256 colors, supports transparency, but poor for photos.</p>
+    
+    <p><strong>WebP:</strong> Modern format with better compression than JPEG/PNG. Supports transparency and animation with smaller file sizes, though older browsers don't support it.</p>
+    
+    <p><strong>SVG:</strong> Vector format perfect for logos and icons. Scales infinitely without quality loss but not suitable for photos.</p>
+    
+    <p>Use JPEG for photos, PNG for graphics needing transparency, WebP for best compression with fallbacks, and SVG for logos and icons that need to scale.</p>
+    
+</body>
+</html>
