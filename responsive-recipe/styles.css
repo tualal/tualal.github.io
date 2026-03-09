@@ -1,1 +1,257 @@
+/* ===================================
+   MOBILE FIRST BASE STYLES
+   =================================== */
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Georgia, serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f9f9f9;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: white;
+}
+
+/* ===================================
+   HEADER SECTION
+   =================================== */
+
+.recipe-header {
+    padding: 20px;
+    background-color: #fff;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.recipe-header h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.recipe-description {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* ===================================
+   IMAGE SECTION
+   =================================== */
+
+.recipe-image {
+    width: 100%;
+    overflow: hidden;
+}
+
+.recipe-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ===================================
+   META INFORMATION (MOBILE: STACKED)
+   =================================== */
+
+.recipe-meta {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.meta-item {
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: white;
+    border-left: 4px solid #3498db;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.meta-item:last-child {
+    margin-bottom: 0;
+}
+
+.meta-label {
+    font-weight: bold;
+    color: #2c3e50;
+    font-size: 0.9rem;
+}
+
+.meta-value {
+    color: #3498db;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/* ===================================
+   RECIPE CONTENT (MOBILE: STACKED)
+   =================================== */
+
+.recipe-content {
+    padding: 20px;
+}
+
+.ingredients,
+.instructions {
+    margin-bottom: 30px;
+}
+
+.recipe-content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 8px;
+}
+
+.ingredients ul,
+.instructions ol {
+    padding-left: 25px;
+}
+
+.ingredients li,
+.instructions li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+/* ===================================
+   NOTES SECTION
+   =================================== */
+
+.recipe-notes {
+    padding: 20px;
+    background-color: #fff8dc;
+    border-top: 2px solid #e0e0e0;
+}
+
+.recipe-notes h2 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.recipe-notes p {
+    color: #555;
+    line-height: 1.6;
+}
+
+/* ===================================
+   TABLET BREAKPOINT (min-width: 768px)
+   =================================== */
+
+@media (min-width: 768px) {
+    .recipe-header {
+        padding: 30px;
+    }
+
+    .recipe-header h1 {
+        font-size: 2.5rem;
+    }
+
+    .recipe-description {
+        font-size: 1.1rem;
+    }
+
+    /* Meta items in a row on tablet */
+    .recipe-meta {
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 25px;
+    }
+
+    .meta-item {
+        flex-direction: column;
+        flex: 1;
+        margin: 0 10px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .meta-item:first-child {
+        margin-left: 0;
+    }
+
+    .meta-item:last-child {
+        margin-right: 0;
+    }
+
+    .meta-label {
+        margin-bottom: 8px;
+    }
+
+    .recipe-content {
+        padding: 30px;
+    }
+
+    .recipe-notes {
+        padding: 30px;
+    }
+}
+
+/* ===================================
+   DESKTOP BREAKPOINT (min-width: 1024px)
+   =================================== */
+
+@media (min-width: 1024px) {
+    .recipe-header {
+        padding: 40px;
+    }
+
+    .recipe-header h1 {
+        font-size: 3rem;
+    }
+
+    .recipe-description {
+        font-size: 1.2rem;
+        max-width: 800px;
+    }
+
+    /* Side-by-side layout for ingredients and instructions */
+    .recipe-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        padding: 40px;
+    }
+
+    .ingredients {
+        margin-bottom: 0;
+    }
+
+    .instructions {
+        margin-bottom: 0;
+    }
+
+    .recipe-content h2 {
+        font-size: 1.8rem;
+    }
+
+    .recipe-notes {
+        padding: 40px;
+    }
+
+    .recipe-notes h2 {
+        font-size: 1.5rem;
+    }
+
+    /* Hover effects on desktop */
+    .meta-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+    }
+}
