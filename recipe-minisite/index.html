@@ -1,1 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Recipe Collection</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="main-nav">
+        <div class="nav-brand">My Recipes</div>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-menu">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li class="has-submenu">
+                <a href="#">My Recipes</a>
+                <ul class="submenu">
+                    <li><a href="recipe1.html">Chocolate Chip Cookies</a></li>
+                    <li><a href="recipe2.html">Banana Bread</a></li>
+                    <li><a href="recipe3.html">Brownies</a></li>
+                </ul>
+            </li>
+            <li class="has-submenu">
+                <a href="#">Favorite Recipe Sites</a>
+                <ul class="submenu">
+                    <li><a href="https://sallysbakingaddiction.com" target="_blank">Sally's Baking Addiction</a></li>
+                    <li><a href="https://www.kingarthurbaking.com" target="_blank">King Arthur Baking</a></li>
+                    <li><a href="https://www.allrecipes.com" target="_blank">AllRecipes</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
 
+    <div class="home-hero">
+        <div class="hero-content">
+            <h1>Welcome to My Recipe Collection</h1>
+            <p>Homemade baking recipes perfected over time</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <section class="intro">
+            <h2>About This Collection</h2>
+            <p>Welcome to my personal collection of tried-and-true baking recipes! Each recipe has been tested, refined, and enjoyed by friends and family. Whether you're looking for the perfect chocolate chip cookie, moist banana bread, or fudgy brownies, you'll find detailed instructions and helpful tips here.</p>
+            <p>All recipes are designed to be approachable for home bakers and include clear step-by-step instructions. Happy baking!</p>
+        </section>
+
+        <section class="recipe-grid">
+            <div class="recipe-card">
+                <h3>Chocolate Chip Cookies</h3>
+                <p>Classic cookies with crispy edges and chewy centers, loaded with chocolate chips.</p>
+                <a href="recipe1.html" class="btn">View Recipe</a>
+            </div>
+            <div class="recipe-card">
+                <h3>Banana Bread</h3>
+                <p>Moist and flavorful banana bread perfect for breakfast or an afternoon snack.</p>
+                <a href="recipe2.html" class="btn">View Recipe</a>
+            </div>
+            <div class="recipe-card">
+                <h3>Fudgy Brownies</h3>
+                <p>Rich, chocolatey brownies with a perfectly fudgy texture that everyone loves.</p>
+                <a href="recipe3.html" class="btn">View Recipe</a>
+            </div>
+        </section>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
