@@ -1,1 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banana Bread Recipe</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="main-nav">
+        <div class="nav-brand">My Recipes</div>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li class="has-submenu">
+                <a href="#">My Recipes</a>
+                <ul class="submenu">
+                    <li><a href="recipe1.html">Chocolate Chip Cookies</a></li>
+                    <li><a href="recipe2.html" class="active">Banana Bread</a></li>
+                    <li><a href="recipe3.html">Brownies</a></li>
+                </ul>
+            </li>
+            <li class="has-submenu">
+                <a href="#">Favorite Recipe Sites</a>
+                <ul class="submenu">
+                    <li><a href="https://sallysbakingaddiction.com" target="_blank">Sally's Baking Addiction</a></li>
+                    <li><a href="https://www.kingarthurbaking.com" target="_blank">King Arthur Baking</a></li>
+                    <li><a href="https://www.allrecipes.com" target="_blank">AllRecipes</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
 
+    <div class="container">
+        <header class="recipe-header">
+            <h1>Banana Bread</h1>
+            <p class="recipe-description">Moist and flavorful banana bread that's perfect for breakfast or as an afternoon snack. The best way to use up overripe bananas!</p>
+        </header>
+
+        <div class="recipe-meta">
+            <div class="meta-item">
+                <span class="meta-label">Prep Time</span>
+                <span class="meta-value">10 min</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Cook Time</span>
+                <span class="meta-value">60 min</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Servings</span>
+                <span class="meta-value">1 loaf</span>
+            </div>
+        </div>
+
+        <div class="recipe-content">
+            <section class="ingredients">
+                <h2>Ingredients</h2>
+                <ul>
+                    <li>3 ripe bananas, mashed</li>
+                    <li>1/3 cup melted butter</li>
+                    <li>3/4 cup sugar</li>
+                    <li>1 large egg, beaten</li>
+                    <li>1 teaspoon vanilla extract</li>
+                    <li>1 teaspoon baking soda</li>
+                    <li>Pinch of salt</li>
+                    <li>1 1/2 cups all-purpose flour</li>
+                    <li>Optional: 1/2 cup chopped walnuts or chocolate chips</li>
+                </ul>
+            </section>
+
+            <section class="instructions">
+                <h2>Instructions</h2>
+                <ol>
+                    <li>Preheat oven to 350°F (175°C). Grease a 9x5 inch loaf pan.</li>
+                    <li>In a large bowl, mash the ripe bananas with a fork until smooth.</li>
+                    <li>Mix in the melted butter until well combined.</li>
+                    <li>Stir in the sugar, beaten egg, and vanilla extract.</li>
+                    <li>Sprinkle the baking soda and salt over the mixture and mix well.</li>
+                    <li>Add the flour and stir until just incorporated. Don't overmix.</li>
+                    <li>If using, fold in walnuts or chocolate chips.</li>
+                    <li>Pour batter into the prepared loaf pan.</li>
+                    <li>Bake for 60-65 minutes, or until a toothpick inserted in the center comes out clean.</li>
+                    <li>Cool in the pan for 10 minutes, then turn out onto a wire rack to cool completely.</li>
+                </ol>
+            </section>
+        </div>
+
+        <section class="recipe-notes">
+            <h2>Notes</h2>
+            <p>The riper the bananas, the better! Look for bananas with lots of brown spots. This bread freezes well for up to 3 months—wrap tightly in plastic wrap and foil.</p>
+        </section>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
