@@ -38,11 +38,11 @@ nav {
 .nav-logo span { color: var(--red); }
 .nav-links { display: flex; list-style: none; }
 .nav-links a {
-  display: block; padding: 0 0.9rem;
+  display: block; padding: 0 0.5rem;
   height: 56px; line-height: 56px;
   font-family: var(--font-head);
-  font-weight: 600; font-size: 0.82rem;
-  letter-spacing: 0.08em; text-transform: uppercase;
+  font-weight: 600; font-size: 0.72rem;
+  letter-spacing: 0.04em; text-transform: uppercase;
   color: var(--light);
   transition: color 0.15s, background 0.15s;
 }
