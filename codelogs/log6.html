@@ -1,74 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Code Log 6 - Code References</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code References</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        h2 {
+            color: #555;
+            margin-top: 30px;
+        }
+        textarea {
+            display: block;
+            width: 100%;
+            margin: 15px 0;
+            padding: 10px;
+            font-family: monospace;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            font-family: monospace;
+        }
+        a {
+            color: #0066cc;
+        }
+        ol {
+            padding-left: 20px;
+            line-height: 2;
+        }
+    </style>
 </head>
 <body>
-
-  <header>
-    <nav>
-      <a href="../index.html">Home</a>
-      <a href="log1.html">Log 1</a>
-      <a href="log2.html">Log 2</a>
-      <a href="log3.html">Log 3</a>
-      <a href="log4.html">Log 4</a>
-      <a href="log5.html">Log 5</a>
-      <a href="log6.html">Log 6</a>
-    </nav>
-  </header>
-
-  <main>
     <h1>Code References</h1>
-    <p class="subtitle">Code Log 6 — DTC 355</p>
 
-    <section>
-      <h2>What I Looked Up</h2>
-      <p>
-        I looked up <code>display: grid</code> — CSS Grid layout. I used it in my major project site (CutGuide) to build the two-column hero section on the homepage and the card grid that displays all nine topics. It felt like a good one to actually research since I was using it without fully understanding everything it could do.
-      </p>
-    </section>
+    <h2>What I Looked Up</h2>
+    <p>I looked up <code>display: grid</code> — CSS Grid layout. I used it in my major project site (CutGuide) to build the two-column hero section on the homepage and the card grid that displays all nine topics. It felt like a good one to research since I was using it without fully understanding everything it could do.</p>
 
-    <section>
-      <h2>The Four Resources</h2>
-      <ol>
+    <h2>The Four Resources</h2>
+    <ol>
         <li><a href="https://www.w3schools.com/css/css_grid.asp" target="_blank">W3Schools — CSS Grid</a></li>
         <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout" target="_blank">MDN Web Docs — CSS Grid Layout</a></li>
         <li><a href="https://css-tricks.com/snippets/css/complete-guide-grid/" target="_blank">CSS-Tricks — A Complete Guide to CSS Grid</a></li>
         <li><a href="https://learncssgrid.com/" target="_blank">Learn CSS Grid — learncssgrid.com</a></li>
-      </ol>
-    </section>
+    </ol>
 
-    <section>
-      <h2>Differences Between the Sites</h2>
+    <h2>Differences Between the Sites</h2>
 
-      <h3>W3Schools</h3>
-      <p>
-        The most beginner-friendly of the four. It breaks everything into short sections with live "Try it Yourself" editors so you can mess with the code directly in the browser. It doesn't go very deep but it's fast to scan when you just need a quick reminder of the syntax. Good starting point, not much beyond that.
-      </p>
+    <p><strong>W3Schools</strong> is the most beginner-friendly of the four. It breaks everything into short sections with live "Try it Yourself" editors so you can mess with the code right in the browser. It doesn't go very deep but it's fast to scan when you just need a quick reminder of the syntax.</p>
 
-      <h3>MDN Web Docs</h3>
-      <p>
-        The most thorough by a lot. It covers not just the basics but also advanced stuff like subgrid, named grid areas, auto-placement, and how grid interacts with other layout methods like flexbox. It reads more like technical documentation than a tutorial, which can be a lot if you're just starting out, but it's the most complete reference of the four. I'd use this when I need to know exactly how something is supposed to behave.
-      </p>
+    <p><strong>MDN Web Docs</strong> is the most thorough by a lot. It covers not just the basics but also advanced stuff like subgrid, named grid areas, auto-placement, and how grid interacts with other layout methods like flexbox. It reads more like technical documentation than a tutorial, which can be overwhelming if you're just starting out, but it's the most complete reference of the four.</p>
 
-      <h3>CSS-Tricks</h3>
-      <p>
-        Their "complete guide" actually lives up to the name. What makes it stand out is the visual diagrams — every property has a clear illustration showing exactly what it does. It covers both the container properties and the item properties in one long scrollable page, which makes it easy to compare things side by side. It also gives context about why grid exists and how it compares to older layout approaches like floats.
-      </p>
+    <p><strong>CSS-Tricks</strong> has what they call a "complete guide" and it earns the name. What makes it stand out is the visual diagrams — every property has a clear illustration showing exactly what it does. It covers both container properties and item properties in one long scrollable page, which makes it easy to compare things side by side.</p>
 
-      <h3>Learn CSS Grid</h3>
-      <p>
-        Sits somewhere between W3Schools and CSS-Tricks. It's organized as a learning guide rather than a reference, so it walks you through concepts in a logical order. More visually clean than MDN but less comprehensive than CSS-Tricks. Good for learning grid from scratch, not as useful once you already know the basics and just need to look something up fast.
-      </p>
-    </section>
+    <p><strong>Learn CSS Grid</strong> sits somewhere between W3Schools and CSS-Tricks. It's organized as a learning guide rather than a reference, so it walks you through concepts in a logical order. Good for learning grid from scratch, not as useful once you already know the basics and just need to look something up quickly.</p>
 
-    <section>
-      <h2>Code Sample — How I Used Grid in CutGuide</h2>
-      <p>Here's the CSS I used to build the two-column hero layout on my major project site:</p>
-      <pre><code>.hero {
+    <h2>How I Used Grid in CutGuide</h2>
+    <p>Here's the CSS I used to build the two-column hero and the card grid on my major project site:</p>
+
+    <textarea rows="9" readonly>
+.hero {
   display: grid;
   grid-template-columns: 1fr 1fr;
   min-height: 86vh;
@@ -78,31 +78,16 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 1.5px;
-}</code></pre>
-      <p>
-        The hero uses two equal columns (<code>1fr 1fr</code>). The card grid uses <code>auto-fill</code> with <code>minmax</code> so cards automatically wrap to new rows depending on the screen width without needing media queries.
-      </p>
-    </section>
+}
+    </textarea>
 
-    <section>
-      <h2>What a Good Reference Page Should Offer</h2>
-      <p>
-        Based on looking at all four, a good code reference page should have working code examples you can actually run or edit, clear visual diagrams for anything spatial or layout-related, a logical organization that separates basic use from advanced use, and a way to quickly jump to what you need without reading everything. Browser compatibility info is also useful — knowing whether something works across browsers matters when you're building for real.
-      </p>
-    </section>
+    <p>The hero uses two equal columns (<code>1fr 1fr</code>). The card grid uses <code>auto-fill</code> with <code>minmax</code> so cards automatically wrap to new rows based on screen width without needing media queries.</p>
 
-    <section>
-      <h2>Standouts</h2>
-      <p>
-        CSS-Tricks is the best of the four for CSS Grid specifically. The visual diagrams make the spatial concepts click in a way that reading code alone doesn't. MDN is the most technically accurate and complete, but I'd use it to look up a specific property rather than to learn from scratch. W3Schools is fine as a starting point but feels shallow once you've been working with grid for more than a few hours. Learn CSS Grid is a solid beginner resource but I probably wouldn't go back to it after getting comfortable with the basics.
-      </p>
-    </section>
+    <h2>What a Good Reference Page Should Offer</h2>
+    <p>Based on looking at all four, a good code reference page should have working examples you can actually edit, clear visual diagrams for anything layout-related, a logical structure that separates basic use from advanced use, and a way to jump to what you need without reading everything. Browser compatibility info is also useful — knowing whether something works across all browsers matters when you're building for real.</p>
 
-  </main>
-
-  <footer>
-    <p>DTC 355 — Washington State University</p>
-  </footer>
+    <h2>Standouts</h2>
+    <p>CSS-Tricks is the best of the four for CSS Grid specifically. The visual diagrams make the spatial concepts click in a way that reading code alone doesn't. MDN is the most complete and accurate but I'd use it to look up a specific property rather than to learn from scratch. W3Schools is fine as a starting point but feels shallow once you've been working with grid for more than a few hours. Learn CSS Grid is solid for beginners but I probably wouldn't return to it after getting comfortable with the basics.</p>
 
 </body>
 </html>
