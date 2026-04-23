@@ -1,1 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Activity 21 — Website Speed & Security Analysis</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --surface: #1a1a1a;
+      --border: #2e2e2e;
+      --text: #e8e8e8;
+      --muted: #888;
+      --accent: #c8f135;
+      --pass: #4ade80;
+      --fail: #f87171;
+      --warn: #fbbf24;
+    }
 
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 48px 24px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 32px;
+      margin-bottom: 40px;
+    }
+
+    .label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: 13px;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    section {
+      margin-bottom: 48px;
+    }
+
+    h2 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      font-family: 'IBM Plex Mono', monospace;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    p { margin-bottom: 12px; color: #ccc; }
+
+    .sites-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 0;
+    }
+
+    .site-entry {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .site-name { font-weight: 600; }
+    .site-url {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* Data table */
+    .table-wrap { overflow-x: auto; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    thead tr {
+      background: var(--surface);
+    }
+
+    th {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+
+    .tool-header {
+      background: #161616;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      padding: 8px 14px;
+    }
+
+    .tool-header td { border-bottom: 1px solid var(--border); padding: 8px 14px; }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .pass-badge { background: rgba(74,222,128,0.15); color: var(--pass); }
+    .fail-badge { background: rgba(248,113,113,0.15); color: var(--fail); }
+    .warn-badge { background: rgba(251,191,36,0.15); color: var(--warn); }
+
+    .score-good { color: var(--pass); font-weight: 600; }
+    .score-mid  { color: var(--warn); font-weight: 600; }
+    .score-bad  { color: var(--fail); font-weight: 600; }
+
+    .site-col { font-weight: 600; white-space: nowrap; }
+
+    .note {
+      font-size: 12px;
+      color: var(--muted);
+      font-family: 'IBM Plex Mono', monospace;
+      margin-top: 4px;
+    }
+
+    footer {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--muted);
+      font-family: 'IBM Plex Mono', monospace;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="label">DTC 355 — Activity 21</div>
+  <h1>Website Speed &amp; Security Analysis</h1>
+  <div class="meta">Tested: April 22, 2026 &nbsp;|&nbsp; Mobile mode (Google PageSpeed)</div>
+</header>
+
+<section>
+  <h2>Overview</h2>
+  <p>This report analyzes three fitness and nutrition websites using four online testing tools: Google PageSpeed Insights, GTmetrix, Pingdom Website Speed Test, and Sucuri Website Security Check. All three sites target a similar audience — people looking for health, diet, and fitness information — which makes them a useful group to compare side by side.</p>
+  <p>All PageSpeed Insights scores were recorded using the mobile testing mode to reflect the experience for users on phones, which make up the majority of web traffic for this type of content.</p>
+</section>
+
+<section>
+  <h2>Sites Tested</h2>
+  <div class="sites-list">
+    <div class="site-entry">
+      <span class="site-name">Bodybuilding.com</span>
+      <span class="site-url">https://www.bodybuilding.com</span>
+    </div>
+    <div class="site-entry">
+      <span class="site-name">MyFitnessPal</span>
+      <span class="site-url">https://www.myfitnesspal.com</span>
+    </div>
+    <div class="site-entry">
+      <span class="site-name">Healthline</span>
+      <span class="site-url">https://www.healthline.com</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Results</h2>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Site</th>
+          <th>Core Web Vitals</th>
+          <th>Performance</th>
+          <th>Accessibility</th>
+          <th>Best Practices</th>
+          <th>SEO</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="tool-header">
+          <td colspan="6">Google PageSpeed Insights (Mobile)</td>
+        </tr>
+        <tr>
+          <td class="site-col">Bodybuilding.com<div class="note">redirected to shop.bodybuilding.com</div></td>
+          <td><span class="badge fail-badge">Failed</span></td>
+          <td><span class="score-bad">26</span></td>
+          <td><span class="score-mid">85</span></td>
+          <td><span class="score-good">96</span></td>
+          <td><span class="score-mid">69</span></td>
+        </tr>
+        <tr>
+          <td class="site-col">MyFitnessPal</td>
+          <td><span class="badge fail-badge">Failed</span></td>
+          <td><span class="score-mid">50</span></td>
+          <td><span class="score-good">91</span></td>
+          <td><span class="score-good">96</span></td>
+          <td><span class="score-good">100</span></td>
+        </tr>
+        <tr>
+          <td class="site-col">Healthline</td>
+          <td><span class="badge pass-badge">Passed</span></td>
+          <td><span class="score-bad">35</span></td>
+          <td><span class="score-mid">88</span></td>
+          <td><span class="score-mid">77</span></td>
+          <td><span class="score-good">92</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <br>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Site</th>
+          <th>GTmetrix Grade</th>
+          <th>Performance</th>
+          <th>Structure</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="tool-header">
+          <td colspan="4">GTmetrix</td>
+        </tr>
+        <tr>
+          <td class="site-col">Bodybuilding.com</td>
+          <td><span class="badge fail-badge">D</span></td>
+          <td><span class="score-bad">57%</span></td>
+          <td><span class="score-mid">76%</span></td>
+        </tr>
+        <tr>
+          <td class="site-col">MyFitnessPal</td>
+          <td><span class="badge warn-badge">C</span></td>
+          <td><span class="score-mid">60%</span></td>
+          <td><span class="score-good">93%</span></td>
+        </tr>
+        <tr>
+          <td class="site-col">Healthline</td>
+          <td><span class="badge warn-badge">C</span></td>
+          <td><span class="score-mid">70%</span></td>
+          <td><span class="score-mid">85%</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <br>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Site</th>
+          <th>Performance Grade</th>
+          <th>Page Size</th>
+          <th>Load Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="tool-header">
+          <td colspan="4">Pingdom Website Speed Test</td>
+        </tr>
+        <tr>
+          <td class="site-col">Bodybuilding.com</td>
+          <td><span class="badge fail-badge">D64</span></td>
+          <td>10.8 MB</td>
+          <td><span class="score-bad">4.54 s</span></td>
+        </tr>
+        <tr>
+          <td class="site-col">MyFitnessPal</td>
+          <td><span class="badge pass-badge">B82</span></td>
+          <td>1.8 MB</td>
+          <td><span class="score-good">709 ms</span></td>
+        </tr>
+        <tr>
+          <td class="site-col">Healthline</td>
+          <td><span class="badge warn-badge">C80</span></td>
+          <td>3.9 MB</td>
+          <td><span class="score-good">772 ms</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <br>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Site</th>
+          <th>Security Risk</th>
+          <th>Malware</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="tool-header">
+          <td colspan="4">Sucuri Website Security Check</td>
+        </tr>
+        <tr>
+          <td class="site-col">Bodybuilding.com</td>
+          <td><span class="badge pass-badge">Low</span></td>
+          <td>None found</td>
+          <td>Not blacklisted. CDN: Cloudflare.</td>
+        </tr>
+        <tr>
+          <td class="site-col">MyFitnessPal</td>
+          <td><span class="badge pass-badge">Low</span></td>
+          <td>None found</td>
+          <td>Not blacklisted. CDN: Cloudflare.</td>
+        </tr>
+        <tr>
+          <td class="site-col">Healthline</td>
+          <td><span class="badge warn-badge">Medium</span></td>
+          <td>None found</td>
+          <td>HTTPS mixed content flagged — site loads HTTP resources over a secure connection. CDN: Amazon CloudFront.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2>Observations</h2>
+  <p>Bodybuilding.com was the weakest performer across the board. Its page size of 10.8 MB is enormous compared to the other two, and its 4.54 second load time reflects that. It also scored the lowest on PageSpeed performance (26) and was the only site to receive a D from GTmetrix. One note: PageSpeed redirected to shop.bodybuilding.com rather than the main site, so those scores reflect the shop subdomain.</p>
+  <p>MyFitnessPal was the fastest in raw load time (709ms) and had the smallest page weight (1.8 MB), which tracks — it's essentially a landing page pushing users toward the app rather than a content-heavy site. It scored highest on SEO (100) and had strong structure scores in GTmetrix (93%). It still failed Core Web Vitals on mobile, though, largely due to a slow LCP of 3.6 seconds.</p>
+  <p>Healthline was the only site to pass Core Web Vitals, which stands out given that its mobile performance score (35) was actually lower than MyFitnessPal's. This suggests its real-world user experience metrics are better than its lab scores imply — likely because it's a well-trafficked site with solid CDN infrastructure (Amazon CloudFront). The medium security flag from Sucuri is worth noting: the site loads some resources over HTTP instead of HTTPS, which is a fixable issue but a minor red flag.</p>
+  <p>All three sites are running on CDN infrastructure, which helps with global load times. None had malware or blacklist issues. The overall pattern is consistent with most large commercial sites — security is solid, but performance optimization (especially on mobile) is an ongoing challenge.</p>
+</section>
+
+<footer>
+  DTC 355 — Activity 21 &nbsp;|&nbsp; Data collected April 22, 2026
+</footer>
+
+</body>
+</html>
