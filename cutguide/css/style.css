@@ -3,7 +3,7 @@
    Fonts loaded from Google Fonts (Barlow Condensed + Barlow)
    Layout uses CSS Grid and Flexbox throughout
    Media queries target mobile at 768px breakpoint
-   AI assisted with nav toggle and hero grid layout */
+ */
 
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@300;400;500;600&display=swap');
 
