@@ -1,59 +1,555 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	
-	<!-- meta tags and title -->
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Page Title</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lenox — DTC 355</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Playfair+Display:ital@1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-	<!-- external and internal CSS -->
-	<link rel="stylesheet" href="styles.css" media="all">
-	<style>
-		/* in-file CSS here */
-	</style>
+    :root {
+      --bg:      #0e0e0e;
+      --surface: #161616;
+      --border:  #2a2a2a;
+      --muted:   #555;
+      --mid:     #999;
+      --light:   #e8e8e8;
+      --white:   #f5f5f0;
+      --accent:  #c8ff00;
+      --accent2: #ff4d1c;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body:    'DM Mono', monospace;
+      --font-italic:  'Playfair Display', serif;
+    }
 
-	<!-- external and internal JavaScript -->
-	<script src="scripts.js" defer></script>
-	<script>
-		// in-page JavaScript here
-	</script>
+    html { scroll-behavior: smooth; }
 
+    body {
+      background: var(--bg);
+      color: var(--light);
+      font-family: var(--font-body);
+      font-size: 13px;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 0 clamp(24px, 5vw, 80px);
+      display: flex;
+      align-items: stretch;
+      min-height: 80px;
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      z-index: 100;
+    }
+
+    .header-name {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: 0.04em;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      flex: 1;
+    }
+
+    .header-name span {
+      color: var(--accent);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    nav a {
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-decoration: none;
+      padding: 0 18px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      border-left: 1px solid var(--border);
+      transition: color 0.2s, background 0.2s;
+    }
+
+    nav a:hover { color: var(--white); background: var(--surface); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: clamp(60px, 10vw, 120px) clamp(24px, 5vw, 80px);
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 40px;
+    }
+
+    .hero-headline {
+      font-family: var(--font-display);
+      font-size: clamp(72px, 14vw, 180px);
+      line-height: 0.9;
+      letter-spacing: -0.01em;
+      color: var(--white);
+    }
+
+    .hero-headline .line2 {
+      color: transparent;
+      -webkit-text-stroke: 1px var(--border);
+    }
+
+    .hero-headline .line2:hover {
+      -webkit-text-stroke: 1px var(--accent);
+      transition: -webkit-text-stroke 0.3s;
+    }
+
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-align: right;
+      padding-bottom: 8px;
+    }
+
+    .tagline {
+      font-family: var(--font-italic);
+      font-style: italic;
+      font-size: clamp(15px, 2vw, 20px);
+      color: var(--mid);
+      max-width: 240px;
+      margin-left: auto;
+    }
+
+    .hero-meta {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .github-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      border: 1px solid var(--accent);
+      padding: 8px 16px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .github-link:hover { background: var(--accent); color: var(--bg); }
+
+    /* ── MAIN GRID ── */
+    main {
+      padding: 0 clamp(24px, 5vw, 80px);
+    }
+
+    /* section label */
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 40px 0 20px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .section-label .count {
+      color: var(--accent);
+      font-size: 10px;
+    }
+
+    /* ── MAJOR PROJECT ── */
+    .major-project {
+      border-bottom: 1px solid var(--border);
+      padding: 48px 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .major-title {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 8vw, 96px);
+      line-height: 0.9;
+      letter-spacing: 0.02em;
+    }
+
+    .major-title span { color: var(--accent2); }
+
+    .major-desc {
+      color: var(--mid);
+      font-size: 13px;
+      line-height: 1.8;
+      margin: 20px 0 32px;
+    }
+
+    .pill-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--accent2);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 12px 24px;
+      font-family: var(--font-body);
+      transition: opacity 0.2s;
+    }
+    .pill-link:hover { opacity: 0.85; }
+    .pill-link svg { flex-shrink: 0; }
+
+    .major-badge {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .badge-tag {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent2);
+    }
+
+    .badge-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .badge-list li {
+      color: var(--mid);
+      font-size: 12px;
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .badge-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--accent2);
+    }
+
+    /* ── LINK GRID (activities + tiny projects) ── */
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      border-left: 1px solid var(--border);
+    }
+
+    .link-card {
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 24px 20px;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: background 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .link-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px;
+      height: 0;
+      background: var(--accent);
+      transition: height 0.25s;
+    }
+
+    .link-card:hover { background: var(--surface); }
+    .link-card:hover::before { height: 100%; }
+
+    .card-num {
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+
+    .card-title {
+      font-size: 13px;
+      color: var(--light);
+      letter-spacing: 0.02em;
+    }
+
+    .card-arrow {
+      margin-top: auto;
+      font-size: 16px;
+      color: var(--muted);
+      transition: color 0.2s, transform 0.2s;
+    }
+
+    .link-card:hover .card-arrow {
+      color: var(--accent);
+      transform: translateX(4px);
+    }
+
+    /* tiny projects use accent2 bar */
+    .tp-section .link-card::before { background: var(--accent2); }
+    .tp-section .link-card:hover .card-arrow { color: var(--accent2); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px clamp(24px, 5vw, 80px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 80px;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+    }
+
+    footer a { color: var(--mid); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-headline { animation: fadeUp 0.7s ease both; }
+    .hero-right    { animation: fadeUp 0.7s 0.15s ease both; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { display: none; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .hero-right { text-align: left; }
+      .tagline { margin-left: 0; }
+
+      .major-project {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .link-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .link-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
-	<p>This is a test.</p>
-	<h1>Lenox Tuala</h1>
-	<p>Learning to code!</p>
-	<a href="https://github.com/tualal/tualal.github.io">View my GitHub Repository</a>
-	<h2>Activities</h2>
-<ul>
-    <a href="codelogs/log1.html">View my Activity 5!</a>
-	<li><a href="codelogs/log2.html">Code Log 2: CSS Measuring Units</a></li>
-	<li><a href="codelogs/log3.html">Code Log 3: CSS Media Queries</a></li>
-	<li><a href="codelogs/log4.html">Code Log 4: CSS Color</a></li>
-	<li><a href="codelogs/log5.html">Code Log 5: Images</a></li>
-	<li><a href="codelogs/log6.html">Code Log 6: Reference Quest</a></li>
-</ul>
-	<h2>Tiny Projects</h2>
-	<li><a href="anni-albers/index.html">TP3: Layout 1 (Grid)</a></li>
-	<li><a href="anni-albers/index2.html">TP3: Layout 2 (Flexbox)</a></li>
-	<li><a href="rhododendron/index.html">TP4: Pacific Rhododendron</a></li>
-	<li><a href="responsive-recipe/index.html">TP6: Responsive Recipe</a></li>
-	<li><a href="recipe-minisite/index.html">TP7: Recipe Mini-Site</a></li>
-	<li><a href="dark-flower/">TP8: Dark-flower</a>
-	<li><a href="long-story/index.html">TP9: Long-Story</a>
-<ul>
-    <li><a href="favorite-recipe/index.html">View My Favorite Recipe</a></li>
-</ul>
-	<h2>Major Project</h2>
-<a href="https://tualal.github.io/cutguide/">Major Project: Website (Cut-Guide)</a>
-	
+  <!-- HEADER -->
+  <header>
+    <div class="header-name">Lenox<span>.</span></div>
+    <nav>
+      <a href="#activities">Activities</a>
+      <a href="#tiny-projects">Tiny Projects</a>
+      <a href="#major">Major Project</a>
+      <a href="https://github.com/tualal/tualal.github.io" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-headline">
+      <div class="line1">Digital</div>
+      <div class="line2">Design</div>
+    </div>
+    <div class="hero-right">
+      <p class="tagline">Building things that actually work.</p>
+      <p class="hero-meta">WSU · DTC 355 · Spring 2025</p>
+      <a class="github-link" href="https://github.com/tualal/tualal.github.io" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        View Repository
+      </a>
+    </div>
+  </section>
+
+  <main>
+
+    <!-- MAJOR PROJECT -->
+    <div class="section-label" id="major">
+      <span>Major Project</span>
+      <span class="count">Option C</span>
+    </div>
+
+    <section class="major-project">
+      <div>
+        <h2 class="major-title">Cut<span>Guide</span></h2>
+        <p class="major-desc">
+          A 10-page instructional site for beginners running a structured fat loss phase.
+          Covers calories, macros, training, grocery shopping, hunger, plateaus, and recovery.
+          Built with plain HTML and CSS, hosted on GitHub Pages.
+        </p>
+        <a class="pill-link" href="cutguide/index.html">
+          Visit CutGuide
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="major-badge">
+        <span class="badge-tag">10 Pages Covering</span>
+        <ul class="badge-list">
+          <li>What is a cut phase</li>
+          <li>Setting your calories</li>
+          <li>Understanding macros</li>
+          <li>Building a training schedule</li>
+          <li>Grocery shopping on a budget</li>
+          <li>Managing hunger and cravings</li>
+          <li>Dealing with plateaus</li>
+          <li>Common mistakes</li>
+          <li>What to do after your cut</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ACTIVITIES -->
+    <div class="section-label" id="activities">
+      <span>Activities</span>
+      <span class="count">11 items</span>
+    </div>
+
+    <div class="link-grid">
+      <a class="link-card" href="hello-world.html">
+        <span class="card-num">01</span>
+        <span class="card-title">Hello World</span>
+        <span class="card-arrow">→</span>
+      </a>
+      <a class="link-card" href="favorite-recipe/index.html">
+        <span class="card-num">02</span>
+        <span class="card-title">Favorite Recipe</span>
+        <span class="card-arrow">→</span>
+      </a>
+      <a class="link-card" href="long-story/index.html">
+        <span class="card-num">03</span>
+        <span class="card-title">Long Story</span>
+        <span class="card-arrow">→</span>
+      </a>
+      <a class="link-card" href="responsive-recipe/index.html">
+        <span class="card-num">04</span>
+        <span class="card-title">Responsive Recipe</span>
+        <span class="card-arrow">→</span>
+      </a>
+      <a class="link-card" href="recipe-minisite/index.html">
+        <span class="card-num">05</span>
+        <span class="card-title">Recipe Minisite</span>
+        <span class="card-arrow">→</span>
+      </a>
+      <a class="link-card" href="rhododendron/index.html">
+        <span class="card-num">06</span>
+        <span class="card-title">Rhododendron</span>
+        <span class="card-arrow">→</span>
+      </a>
+      <a class="link-card" href="anni-albers/index.html">
+        <span class="card-num">07</span>
+        <span class="card-title">Anni Albers</span>
+        <span class="card-arrow">→</span>
+      </a>
+      <a class="link-card" href="activity21.html">
+        <span class="card-num">08</span>
+        <span class="card-title">Activity 21</span>
+        <span class="card-arrow">→</span>
+      </a>
+    </div>
+
+    <!-- TINY PROJECTS -->
+    <div class="section-label tp-section" id="tiny-projects">
+      <span>Tiny Projects</span>
+      <span class="count">10 items</span>
+    </div>
+
+    <div class="link-grid tp-section">
+      <a class="link-card" href="codelogs/log1.html">
+        <span class="card-num">TP1</span>
+        <span class="card-title">Code Log 1</span>
+        <span class="card-arrow">→</span>
+      </a>
+      <a class="link-card" href="codelogs/log2.html">
+        <span class="card-num">TP2</span>
+        <span class="card-title">Code Log 2</span>
+        <span class="card-arrow">→</span>
+      </a>
+      <a class="link-card" href="codelogs/log3.html">
+        <span class="card-num">TP3</span>
+        <span class="card-title">Code Log 3</span>
+        <span class="card-arrow">→</span>
+      </a>
+      <a class="link-card" href="codelogs/log4.html">
+        <span class="card-num">TP4</span>
+        <span class="card-title">Code Log 4</span>
+        <span class="card-arrow">→</span>
+      </a>
+      <a class="link-card" href="codelogs/log5.html">
+        <span class="card-num">TP5</span>
+        <span class="card-title">Code Log 5</span>
+        <span class="card-arrow">→</span>
+      </a>
+      <a class="link-card" href="codelogs/log6.html">
+        <span class="card-num">TP6</span>
+        <span class="card-title">Code Log 6</span>
+        <span class="card-arrow">→</span>
+      </a>
+      <a class="link-card" href="dark-flower/index.html">
+        <span class="card-num">TP8</span>
+        <span class="card-title">Dark Flower</span>
+        <span class="card-arrow">→</span>
+      </a>
+      <a class="link-card" href="#">
+        <span class="card-num">TP10</span>
+        <span class="card-title">This Page</span>
+        <span class="card-arrow">→</span>
+      </a>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>Lenox — WSU DTC 355 — Spring 2025</span>
+    <a href="https://github.com/tualal/tualal.github.io" target="_blank" rel="noopener">github.com/tualal</a>
+  </footer>
 
 </body>
 </html>
-
-
 
 
 
