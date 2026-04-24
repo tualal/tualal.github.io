@@ -8,22 +8,26 @@
 </head>
 <body>
 
+<!-- Navigation — structure consistent across all pages -->
 <nav>
   <div class="nav-logo">CUT<span>GUIDE</span></div>
+  <!-- Hamburger button shown on mobile only -->
+  <button class="nav-toggle" aria-label="Open navigation menu">&#9776;</button>
   <ul class="nav-links">
-  <li><a href="index.html" class="active">Home</a></li>
-  <li><a href="pages/what-is-a-cut.html">The Cut</a></li>
-  <li><a href="pages/calories.html">Calories</a></li>
-  <li><a href="pages/macros.html">Macros</a></li>
-  <li><a href="pages/training.html">Training</a></li>
-  <li><a href="pages/grocery.html">Grocery</a></li>
-  <li><a href="pages/hunger.html">Hunger</a></li>
-  <li><a href="pages/plateaus.html">Plateaus</a></li>
-  <li><a href="pages/mistakes.html">Mistakes</a></li>
-  <li><a href="pages/after-cut.html">After</a></li>
-</ul>
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="pages/what-is-a-cut.html">The Cut</a></li>
+    <li><a href="pages/calories.html">Calories</a></li>
+    <li><a href="pages/macros.html">Macros</a></li>
+    <li><a href="pages/training.html">Training</a></li>
+    <li><a href="pages/grocery.html">Grocery</a></li>
+    <li><a href="pages/hunger.html">Hunger</a></li>
+    <li><a href="pages/plateaus.html">Plateaus</a></li>
+    <li><a href="pages/mistakes.html">Mistakes</a></li>
+    <li><a href="pages/after-cut.html">After</a></li>
+  </ul>
 </nav>
 
+<!-- Hero section — two-column grid on desktop, stacks on mobile -->
 <section class="hero">
   <div class="hero-text">
     <p class="hero-label">The no-BS beginner's guide</p>
@@ -34,6 +38,7 @@
       <a href="pages/calories.html" class="btn btn-outline">Set Your Calories</a>
     </div>
   </div>
+  <!-- Stat grid — hidden on mobile via CSS -->
   <div class="hero-visual">
     <div class="hero-stat-grid">
       <div class="hero-stat"><div class="num">10</div><div class="label">Pages of content</div></div>
@@ -44,6 +49,7 @@
   </div>
 </section>
 
+<!-- Card grid section — one card per page topic -->
 <section style="padding: 5rem 4rem; border-top: 1px solid var(--mid);">
   <p class="hero-label" style="margin-bottom: 2rem;">What you'll learn</p>
   <div class="card-grid">
@@ -59,10 +65,20 @@
   </div>
 </section>
 
+<!-- Footer with copyright -->
 <footer>
   <div class="footer-logo">CUT<span>GUIDE</span></div>
-  <p>A DTC 355 project — WSU, Spring 2025</p>
+  <p>A DTC 355 project &mdash; WSU &copy; 2026. No images used. Content written for educational purposes.</p>
 </footer>
+
+<!-- Mobile nav toggle script — AI-assisted -->
+<script>
+  const toggle = document.querySelector('.nav-toggle');
+  const links = document.querySelector('.nav-links');
+  toggle.addEventListener('click', () => {
+    links.classList.toggle('nav-open');
+  });
+</script>
 
 </body>
 </html>
