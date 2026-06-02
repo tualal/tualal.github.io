@@ -3,554 +3,927 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lenox — DTC 355</title>
+  <title>Lenox Tuala</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Playfair+Display:ital@1&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;1,300&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:      #0e0e0e;
-      --surface: #161616;
-      --border:  #2a2a2a;
-      --muted:   #555;
-      --mid:     #999;
-      --light:   #e8e8e8;
-      --white:   #f5f5f0;
-      --accent:  #c8ff00;
-      --accent2: #ff4d1c;
-      --font-display: 'Bebas Neue', sans-serif;
-      --font-body:    'DM Mono', monospace;
-      --font-italic:  'Playfair Display', serif;
+      --sky-light: #d6eeff;
+      --sky-mid:   #a8d8f8;
+      --sky-deep:  #5bb8f5;
+      --sky-vivid: #1a8fe3;
+      --sky-dark:  #0d5fa8;
+      --aqua:      #3dd6c8;
+      --aqua-dark: #0ea89a;
+      --white:     #ffffff;
+      --offwhite:  #f0f8ff;
+      --glass:     rgba(255,255,255,0.55);
+      --glass-border: rgba(255,255,255,0.75);
+      --text-dark: #0e2a45;
+      --text-mid:  #2a5a7a;
+      --text-mute: #5a8aaa;
+      --green-soft: #a8e6cf;
+      --green-mid:  #3dc98a;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--bg);
-      color: var(--light);
-      font-family: var(--font-body);
-      font-size: 13px;
-      line-height: 1.7;
+      font-family: 'Nunito', sans-serif;
+      color: var(--text-dark);
+      background: var(--offwhite);
       min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── SKY BACKGROUND ── */
+    .sky-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background:
+        radial-gradient(ellipse 120% 60% at 60% -10%, #c9e9ff 0%, transparent 60%),
+        radial-gradient(ellipse 80% 80% at -10% 40%, #ddf4ff 0%, transparent 55%),
+        radial-gradient(ellipse 100% 50% at 110% 80%, #b8eaf0 0%, transparent 60%),
+        linear-gradient(175deg, #e8f6ff 0%, #cceeff 30%, #dff5f0 70%, #e8fff8 100%);
+    }
+
+    /* soft cloud blobs */
+    .sky-bg::before {
+      content: '';
+      position: absolute;
+      top: 8%;
+      left: -5%;
+      width: 55%;
+      height: 220px;
+      background: radial-gradient(ellipse, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+      border-radius: 50%;
+      filter: blur(30px);
+    }
+
+    .sky-bg::after {
+      content: '';
+      position: absolute;
+      top: 15%;
+      right: -8%;
+      width: 45%;
+      height: 180px;
+      background: radial-gradient(ellipse, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 70%);
+      border-radius: 50%;
+      filter: blur(24px);
     }
 
     /* ── HEADER ── */
     header {
-      border-bottom: 1px solid var(--border);
-      padding: 0 clamp(24px, 5vw, 80px);
-      display: flex;
-      align-items: stretch;
-      min-height: 80px;
       position: sticky;
       top: 0;
-      background: var(--bg);
       z-index: 100;
+      backdrop-filter: blur(20px) saturate(1.4);
+      -webkit-backdrop-filter: blur(20px) saturate(1.4);
+      background: rgba(255,255,255,0.6);
+      border-bottom: 1px solid var(--glass-border);
+      box-shadow: 0 2px 24px rgba(90,180,240,0.12);
     }
 
-    .header-name {
-      font-family: var(--font-display);
-      font-size: clamp(28px, 4vw, 44px);
-      letter-spacing: 0.04em;
-      color: var(--white);
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 32px;
+      height: 68px;
       display: flex;
       align-items: center;
-      flex: 1;
+      justify-content: space-between;
     }
 
-    .header-name span {
-      color: var(--accent);
+    .logo {
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      color: var(--sky-dark);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .logo span {
+      color: var(--aqua-dark);
     }
 
     nav {
       display: flex;
       align-items: center;
-      gap: 0;
+      gap: 4px;
     }
 
     nav a {
-      font-family: var(--font-body);
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--mid);
+      font-family: 'Nunito', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-mid);
       text-decoration: none;
-      padding: 0 18px;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      border-left: 1px solid var(--border);
-      transition: color 0.2s, background 0.2s;
+      padding: 8px 16px;
+      border-radius: 24px;
+      transition: background 0.2s, color 0.2s;
     }
 
-    nav a:hover { color: var(--white); background: var(--surface); }
+    nav a:hover {
+      background: rgba(91,184,245,0.18);
+      color: var(--sky-dark);
+    }
+
+    .nav-cta {
+      background: linear-gradient(135deg, var(--sky-vivid), var(--aqua-dark));
+      color: white !important;
+      border-radius: 24px;
+      padding: 8px 20px;
+      font-weight: 700;
+      box-shadow: 0 2px 12px rgba(26,143,227,0.3), inset 0 1px 0 rgba(255,255,255,0.3);
+      transition: transform 0.15s, box-shadow 0.15s !important;
+    }
+
+    .nav-cta:hover {
+      background: linear-gradient(135deg, var(--sky-vivid), var(--aqua-dark)) !important;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(26,143,227,0.4), inset 0 1px 0 rgba(255,255,255,0.3) !important;
+    }
 
     /* ── HERO ── */
     .hero {
-      padding: clamp(60px, 10vw, 120px) clamp(24px, 5vw, 80px);
-      border-bottom: 1px solid var(--border);
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 80px 32px 64px;
       display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: end;
-      gap: 40px;
+      grid-template-columns: 1fr 380px;
+      gap: 48px;
+      align-items: center;
     }
 
-    .hero-headline {
-      font-family: var(--font-display);
-      font-size: clamp(72px, 14vw, 180px);
-      line-height: 0.9;
-      letter-spacing: -0.01em;
-      color: var(--white);
-    }
-
-    .hero-headline .line2 {
-      color: transparent;
-      -webkit-text-stroke: 1px var(--border);
-    }
-
-    .hero-headline .line2:hover {
-      -webkit-text-stroke: 1px var(--accent);
-      transition: -webkit-text-stroke 0.3s;
-    }
-
-    .hero-right {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      text-align: right;
-      padding-bottom: 8px;
-    }
-
-    .tagline {
-      font-family: var(--font-italic);
-      font-style: italic;
-      font-size: clamp(15px, 2vw, 20px);
-      color: var(--mid);
-      max-width: 240px;
-      margin-left: auto;
-    }
-
-    .hero-meta {
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .github-link {
+    .hero-label {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-size: 11px;
-      letter-spacing: 0.1em;
+      background: rgba(255,255,255,0.7);
+      border: 1px solid rgba(91,184,245,0.4);
+      border-radius: 24px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--sky-dark);
+      letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: var(--accent);
-      text-decoration: none;
-      border: 1px solid var(--accent);
-      padding: 8px 16px;
-      transition: background 0.2s, color 0.2s;
-    }
-    .github-link:hover { background: var(--accent); color: var(--bg); }
-
-    /* ── MAIN GRID ── */
-    main {
-      padding: 0 clamp(24px, 5vw, 80px);
+      margin-bottom: 20px;
+      box-shadow: 0 1px 8px rgba(91,184,245,0.15);
     }
 
-    /* section label */
-    .section-label {
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-      padding: 40px 0 20px;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 0;
+    .hero-label-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green-mid);
+      box-shadow: 0 0 0 3px rgba(61,201,138,0.25);
+    }
+
+    .hero h1 {
+      font-family: 'Exo 2', sans-serif;
+      font-size: clamp(40px, 5.5vw, 64px);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--text-dark);
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 .name-accent {
+      background: linear-gradient(135deg, var(--sky-vivid) 0%, var(--aqua-dark) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-bio {
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--text-mid);
+      line-height: 1.7;
+      max-width: 520px;
+      margin-bottom: 36px;
+    }
+
+    .hero-links {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
     }
 
-    .section-label .count {
-      color: var(--accent);
-      font-size: 10px;
-    }
-
-    /* ── MAJOR PROJECT ── */
-    .major-project {
-      border-bottom: 1px solid var(--border);
-      padding: 48px 0;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-    }
-
-    .major-title {
-      font-family: var(--font-display);
-      font-size: clamp(48px, 8vw, 96px);
-      line-height: 0.9;
-      letter-spacing: 0.02em;
-    }
-
-    .major-title span { color: var(--accent2); }
-
-    .major-desc {
-      color: var(--mid);
-      font-size: 13px;
-      line-height: 1.8;
-      margin: 20px 0 32px;
-    }
-
-    .pill-link {
+    .btn-primary {
       display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--sky-vivid) 0%, var(--aqua-dark) 100%);
+      color: white;
+      font-family: 'Nunito', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 13px 26px;
+      border-radius: 32px;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(26,143,227,0.35), inset 0 1px 0 rgba(255,255,255,0.25);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(26,143,227,0.45), inset 0 1px 0 rgba(255,255,255,0.25);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.65);
+      color: var(--text-mid);
+      font-family: 'Nunito', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 13px 26px;
+      border-radius: 32px;
+      text-decoration: none;
+      border: 1px solid rgba(91,184,245,0.4);
+      box-shadow: 0 2px 12px rgba(91,184,245,0.1), inset 0 1px 0 rgba(255,255,255,0.8);
+      transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+    }
+
+    .btn-ghost:hover {
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.85);
+      box-shadow: 0 6px 20px rgba(91,184,245,0.2), inset 0 1px 0 rgba(255,255,255,0.9);
+    }
+
+    /* ── HERO CARD ── */
+    .hero-card {
+      background: rgba(255,255,255,0.62);
+      backdrop-filter: blur(24px) saturate(1.5);
+      -webkit-backdrop-filter: blur(24px) saturate(1.5);
+      border: 1px solid var(--glass-border);
+      border-radius: 28px;
+      padding: 32px;
+      box-shadow:
+        0 8px 40px rgba(91,184,245,0.18),
+        inset 0 1px 0 rgba(255,255,255,0.9),
+        inset 0 -1px 0 rgba(91,184,245,0.1);
+    }
+
+    .avatar-ring {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--sky-mid), var(--aqua));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Exo 2', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 20px rgba(91,184,245,0.4), inset 0 1px 0 rgba(255,255,255,0.4);
+    }
+
+    .hero-card h3 {
+      font-family: 'Exo 2', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+
+    .hero-card .card-role {
+      font-size: 13px;
+      color: var(--text-mute);
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .contact-row {
+      display: flex;
       align-items: center;
       gap: 10px;
-      background: var(--accent2);
-      color: var(--white);
-      text-decoration: none;
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 12px 24px;
-      font-family: var(--font-body);
-      transition: opacity 0.2s;
-    }
-    .pill-link:hover { opacity: 0.85; }
-    .pill-link svg { flex-shrink: 0; }
-
-    .major-badge {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 32px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .badge-tag {
-      font-size: 10px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--accent2);
-    }
-
-    .badge-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .badge-list li {
-      color: var(--mid);
-      font-size: 12px;
-      padding-left: 16px;
-      position: relative;
-    }
-
-    .badge-list li::before {
-      content: '—';
-      position: absolute;
-      left: 0;
-      color: var(--accent2);
-    }
-
-    /* ── LINK GRID (activities + tiny projects) ── */
-    .link-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      border-left: 1px solid var(--border);
-    }
-
-    .link-card {
-      border-right: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 24px 20px;
-      text-decoration: none;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      transition: background 0.2s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .link-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 3px;
-      height: 0;
-      background: var(--accent);
-      transition: height 0.25s;
-    }
-
-    .link-card:hover { background: var(--surface); }
-    .link-card:hover::before { height: 100%; }
-
-    .card-num {
-      font-size: 10px;
-      color: var(--muted);
-      letter-spacing: 0.1em;
-    }
-
-    .card-title {
+      padding: 10px 0;
+      border-top: 1px solid rgba(91,184,245,0.15);
       font-size: 13px;
-      color: var(--light);
-      letter-spacing: 0.02em;
+      color: var(--text-mid);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .contact-row:hover {
+      color: var(--sky-vivid);
+    }
+
+    .contact-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: rgba(91,184,245,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-icon svg {
+      width: 15px;
+      height: 15px;
+      fill: none;
+      stroke: var(--sky-vivid);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .contact-text {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* ── SECTION SHARED ── */
+    section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 64px 32px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--sky-vivid);
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-family: 'Exo 2', sans-serif;
+      font-size: clamp(26px, 3.5vw, 36px);
+      font-weight: 700;
+      color: var(--text-dark);
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+
+    .section-sub {
+      font-size: 15px;
+      color: var(--text-mute);
+      margin-bottom: 40px;
+      max-width: 560px;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .divider hr {
+      border: none;
+      border-top: 1px solid rgba(91,184,245,0.2);
+    }
+
+    /* ── FEATURED PROJECT ── */
+    .featured-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .featured-card {
+      background: rgba(255,255,255,0.62);
+      backdrop-filter: blur(20px) saturate(1.4);
+      -webkit-backdrop-filter: blur(20px) saturate(1.4);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: 0 4px 28px rgba(91,184,245,0.13), inset 0 1px 0 rgba(255,255,255,0.85);
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .featured-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(91,184,245,0.22), inset 0 1px 0 rgba(255,255,255,0.9);
+    }
+
+    .featured-card.accent {
+      background: linear-gradient(145deg, rgba(26,143,227,0.08) 0%, rgba(61,214,200,0.08) 100%),
+                  rgba(255,255,255,0.7);
+      border-color: rgba(91,184,245,0.5);
+    }
+
+    .project-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 24px;
+      margin-bottom: 16px;
+    }
+
+    .tag-blue {
+      background: rgba(26,143,227,0.12);
+      color: var(--sky-dark);
+    }
+
+    .tag-teal {
+      background: rgba(61,214,200,0.15);
+      color: var(--aqua-dark);
+    }
+
+    .tag-green {
+      background: rgba(61,201,138,0.12);
+      color: #0a7a4f;
+    }
+
+    .featured-card h3 {
+      font-family: 'Exo 2', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .featured-card p {
+      font-size: 14px;
+      color: var(--text-mute);
+      line-height: 1.65;
+      margin-bottom: 24px;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-pills {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 24px;
+      background: rgba(168,216,248,0.25);
+      color: var(--text-mid);
+      border: 1px solid rgba(91,184,245,0.2);
     }
 
     .card-arrow {
-      margin-top: auto;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--sky-vivid), var(--aqua-dark));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 2px 10px rgba(26,143,227,0.3);
+    }
+
+    .card-arrow svg {
+      width: 14px;
+      height: 14px;
+      fill: none;
+      stroke: white;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ── CLASS PROJECTS GRID ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .project-mini {
+      background: rgba(255,255,255,0.58);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      border-radius: 18px;
+      padding: 22px;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: transform 0.18s, box-shadow 0.18s;
+      box-shadow: 0 2px 16px rgba(91,184,245,0.1), inset 0 1px 0 rgba(255,255,255,0.8);
+    }
+
+    .project-mini:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(91,184,245,0.18), inset 0 1px 0 rgba(255,255,255,0.9);
+    }
+
+    .mini-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .icon-sky   { background: rgba(91,184,245,0.18); }
+    .icon-teal  { background: rgba(61,214,200,0.18); }
+    .icon-green { background: rgba(61,201,138,0.18); }
+    .icon-amber { background: rgba(240,185,60,0.18); }
+    .icon-pink  { background: rgba(240,100,160,0.15); }
+
+    .project-mini h4 {
+      font-family: 'Exo 2', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+
+    .project-mini p {
+      font-size: 12px;
+      color: var(--text-mute);
+      line-height: 1.55;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .about-text {
       font-size: 16px;
-      color: var(--muted);
-      transition: color 0.2s, transform 0.2s;
+      color: var(--text-mid);
+      line-height: 1.75;
     }
 
-    .link-card:hover .card-arrow {
-      color: var(--accent);
-      transform: translateX(4px);
+    .about-text p {
+      margin-bottom: 16px;
     }
 
-    /* tiny projects use accent2 bar */
-    .tp-section .link-card::before { background: var(--accent2); }
-    .tp-section .link-card:hover .card-arrow { color: var(--accent2); }
+    .skills-box {
+      background: rgba(255,255,255,0.62);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: 0 4px 24px rgba(91,184,245,0.12), inset 0 1px 0 rgba(255,255,255,0.85);
+    }
+
+    .skills-box h4 {
+      font-family: 'Exo 2', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 16px;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill-tag {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 24px;
+      background: rgba(168,216,248,0.28);
+      color: var(--sky-dark);
+      border: 1px solid rgba(91,184,245,0.25);
+    }
 
     /* ── FOOTER ── */
     footer {
-      border-top: 1px solid var(--border);
-      padding: 32px clamp(24px, 5vw, 80px);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 80px;
-      color: var(--muted);
-      font-size: 11px;
-      letter-spacing: 0.08em;
+      background: rgba(255,255,255,0.5);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(91,184,245,0.2);
+      margin-top: 40px;
     }
 
-    footer a { color: var(--mid); text-decoration: none; }
-    footer a:hover { color: var(--accent); }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 36px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-name {
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--sky-dark);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-mute);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer-links a:hover {
+      color: var(--sky-vivid);
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: var(--text-mute);
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 48px 20px 40px;
+      }
+
+      .hero-card { order: -1; }
+
+      .featured-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .header-inner { padding: 0 20px; }
+
+      nav .nav-link-hide { display: none; }
+
+      section { padding: 48px 20px; }
+
+      .footer-inner {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+
+      .footer-links { justify-content: center; }
+    }
 
     /* ── ANIMATIONS ── */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
+      from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    .hero-headline { animation: fadeUp 0.7s ease both; }
-    .hero-right    { animation: fadeUp 0.7s 0.15s ease both; }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      nav { display: none; }
-
-      .hero {
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-
-      .hero-right { text-align: left; }
-      .tagline { margin-left: 0; }
-
-      .major-project {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-
-      .link-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      footer {
-        flex-direction: column;
-        gap: 12px;
-        text-align: center;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .link-grid { grid-template-columns: 1fr; }
-    }
+    .hero-content { animation: fadeUp 0.6s ease both; }
+    .hero-card    { animation: fadeUp 0.6s 0.15s ease both; }
   </style>
 </head>
 <body>
 
+  <div class="sky-bg"></div>
+
   <!-- HEADER -->
   <header>
-    <div class="header-name">Lenox<span>.</span></div>
-    <nav>
-      <a href="#activities">Activities</a>
-      <a href="#tiny-projects">Tiny Projects</a>
-      <a href="#major">Major Project</a>
-      <a href="https://github.com/tualal/tualal.github.io" target="_blank" rel="noopener">GitHub</a>
-    </nav>
+    <div class="header-inner">
+      <a class="logo" href="#">Lenox<span>.</span></a>
+      <nav>
+        <a href="#projects" class="nav-link-hide">Projects</a>
+        <a href="#about" class="nav-link-hide">About</a>
+        <a href="mailto:lenoxtuala7@gmail.com" class="nav-cta">Get in touch</a>
+      </nav>
+    </div>
   </header>
 
   <!-- HERO -->
-  <section class="hero">
-    <div class="hero-headline">
-      <div class="line1">Digital</div>
-      <div class="line2">Design</div>
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-label">
+        <span class="hero-label-dot"></span>
+        Open to opportunities
+      </div>
+      <h1>Hi, I'm <span class="name-accent">Lenox Tuala</span></h1>
+      <p class="hero-bio">
+        Digital technology student at WSU. I build websites and digital experiences — from instructional tools to interactive front-ends. Currently growing my skills one project at a time.
+      </p>
+      <div class="hero-links">
+        <a href="#projects" class="btn-primary">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          View my work
+        </a>
+        <a href="https://github.com/tualal" target="_blank" rel="noopener" class="btn-ghost">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
+          GitHub
+        </a>
+      </div>
     </div>
-    <div class="hero-right">
-      <p class="tagline">Building things that actually work.</p>
-      <p class="hero-meta">WSU · DTC 355 · Spring 2025</p>
-      <a class="github-link" href="https://github.com/tualal/tualal.github.io" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-        View Repository
+
+    <!-- CONTACT CARD -->
+    <div class="hero-card">
+      <div class="avatar-ring">LT</div>
+      <h3>Lenox Tuala</h3>
+      <p class="card-role">DTC Graduate &middot; WSU &rsquo;26</p>
+
+      <a href="mailto:lenoxtuala7@gmail.com" class="contact-row">
+        <span class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </span>
+        <span class="contact-text">lenoxtuala7@gmail.com</span>
+      </a>
+
+      <a href="https://www.linkedin.com/in/lenox-tuala-a7a87829a/" target="_blank" rel="noopener" class="contact-row">
+        <span class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </span>
+        <span class="contact-text">LinkedIn</span>
+      </a>
+
+      <a href="https://github.com/tualal" target="_blank" rel="noopener" class="contact-row">
+        <span class="contact-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
+        </span>
+        <span class="contact-text">github.com/tualal</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="divider"><hr /></div>
+
+  <!-- FEATURED PROJECTS -->
+  <section id="projects">
+    <p class="section-label">Work</p>
+    <h2 class="section-title">Featured Projects</h2>
+    <p class="section-sub">The stuff I'm most proud of.</p>
+
+    <div class="featured-grid">
+      <a href="https://tualal.github.io/cutguide/" target="_blank" rel="noopener" class="featured-card accent">
+        <span class="project-tag tag-blue">Instructional Site</span>
+        <h3>CutGuide</h3>
+        <p>A 10-page beginner's guide to running a structured fat loss phase. Covers calories, macros, training, grocery shopping, plateau management, and post-cut recovery.</p>
+        <div class="card-meta">
+          <div class="card-pills">
+            <span class="pill">HTML</span>
+            <span class="pill">CSS</span>
+            <span class="pill">JavaScript</span>
+          </div>
+          <span class="card-arrow">
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a href="https://tualal.github.io/long-story" target="_blank" rel="noopener" class="featured-card">
+        <span class="project-tag tag-teal">Long-scroll Page</span>
+        <h3>Life Cycle of a Star</h3>
+        <p>A long-scrolling narrative page walking through the full life cycle of a star — from nebula to supernova. Built as part of DTC 355 coursework.</p>
+        <div class="card-meta">
+          <div class="card-pills">
+            <span class="pill">HTML</span>
+            <span class="pill">CSS</span>
+          </div>
+          <span class="card-arrow">
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </span>
+        </div>
       </a>
     </div>
   </section>
 
-  <main>
+  <div class="divider"><hr /></div>
 
-    <!-- MAJOR PROJECT -->
-    <div class="section-label" id="major">
-      <span>Major Project</span>
-      <span class="count">Option C</span>
+  <!-- CLASS PROJECTS -->
+  <section>
+    <p class="section-label">DTC 355</p>
+    <h2 class="section-title">Class Projects</h2>
+    <p class="section-sub">Smaller assignments and experiments from my web design course at WSU.</p>
+
+    <div class="projects-grid">
+      <a href="https://tualal.github.io/dark-flower" target="_blank" rel="noopener" class="project-mini">
+        <div class="mini-icon icon-pink">🌸</div>
+        <h4>Dark Flower</h4>
+        <p>Styled HTML/CSS mini-project with a dark floral aesthetic.</p>
+      </a>
+
+      <a href="https://tualal.github.io/anni-albers" target="_blank" rel="noopener" class="project-mini">
+        <div class="mini-icon icon-amber">🎨</div>
+        <h4>Anni Albers</h4>
+        <p>Tribute page for textile artist Anni Albers.</p>
+      </a>
+
+      <a href="https://tualal.github.io/favorite-recipe" target="_blank" rel="noopener" class="project-mini">
+        <div class="mini-icon icon-green">🍴</div>
+        <h4>Favorite Recipe</h4>
+        <p>Styled recipe page with semantic HTML and layout practice.</p>
+      </a>
+
+      <a href="https://tualal.github.io/recipe-minisite" target="_blank" rel="noopener" class="project-mini">
+        <div class="mini-icon icon-teal">🥗</div>
+        <h4>Recipe Minisite</h4>
+        <p>Multi-page recipe site with consistent nav and styling.</p>
+      </a>
+
+      <a href="https://tualal.github.io/responsive-recipe" target="_blank" rel="noopener" class="project-mini">
+        <div class="mini-icon icon-sky">📱</div>
+        <h4>Responsive Recipe</h4>
+        <p>Mobile-first responsive layout using CSS Grid and media queries.</p>
+      </a>
+
+      <a href="https://tualal.github.io/rhododendron" target="_blank" rel="noopener" class="project-mini">
+        <div class="mini-icon icon-pink">🌺</div>
+        <h4>Rhododendron</h4>
+        <p>Nature-themed design exercise with CSS styling.</p>
+      </a>
+
+      <a href="https://tualal.github.io/activity21.html" target="_blank" rel="noopener" class="project-mini">
+        <div class="mini-icon icon-sky">📊</div>
+        <h4>Activity 21</h4>
+        <p>Performance and security analysis of three fitness websites using four testing tools.</p>
+      </a>
+
+      <a href="https://tualal.github.io/codelogs/log6.html" target="_blank" rel="noopener" class="project-mini">
+        <div class="mini-icon icon-teal">📝</div>
+        <h4>Code Logs</h4>
+        <p>Six code log entries documenting CSS and HTML techniques learned throughout the semester.</p>
+      </a>
     </div>
+  </section>
 
-    <section class="major-project">
-      <div>
-        <h2 class="major-title">Cut<span>Guide</span></h2>
-        <p class="major-desc">
-          A 10-page instructional site for beginners running a structured fat loss phase.
-          Covers calories, macros, training, grocery shopping, hunger, plateaus, and recovery.
-          Built with plain HTML and CSS, hosted on GitHub Pages.
-        </p>
-        <a class="pill-link" href="cutguide/index.html">
-          Visit CutGuide
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
+  <div class="divider"><hr /></div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="section-label">About</p>
+    <h2 class="section-title">A bit about me</h2>
+
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm a recent graduate from Washington State University, class of 2026. Learning by doing, one project at a time.</p>
+        <p>Looking to keep growing as a creator and find opportunities where I can keep building.</p>
       </div>
-      <div class="major-badge">
-        <span class="badge-tag">10 Pages Covering</span>
-        <ul class="badge-list">
-          <li>What is a cut phase</li>
-          <li>Setting your calories</li>
-          <li>Understanding macros</li>
-          <li>Building a training schedule</li>
-          <li>Grocery shopping on a budget</li>
-          <li>Managing hunger and cravings</li>
-          <li>Dealing with plateaus</li>
-          <li>Common mistakes</li>
-          <li>What to do after your cut</li>
-        </ul>
+
+      <div class="skills-box">
+        <h4>Skills &amp; Tools</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">HTML</span>
+          <span class="skill-tag">CSS</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">CSS Grid</span>
+          <span class="skill-tag">Responsive Design</span>
+          <span class="skill-tag">GitHub Pages</span>
+          <span class="skill-tag">Figma</span>
+          <span class="skill-tag">Web Performance</span>
+          <span class="skill-tag">Git</span>
+        </div>
       </div>
-    </section>
-
-    <!-- ACTIVITIES -->
-    <div class="section-label" id="activities">
-      <span>Activities</span>
-      <span class="count">11 items</span>
     </div>
-
-    <div class="link-grid">
-      <a class="link-card" href="hello-world.html">
-        <span class="card-num">01</span>
-        <span class="card-title">Hello World</span>
-        <span class="card-arrow">→</span>
-      </a>
-      <a class="link-card" href="favorite-recipe/index.html">
-        <span class="card-num">02</span>
-        <span class="card-title">Favorite Recipe</span>
-        <span class="card-arrow">→</span>
-      </a>
-      <a class="link-card" href="long-story/index.html">
-        <span class="card-num">03</span>
-        <span class="card-title">Long Story</span>
-        <span class="card-arrow">→</span>
-      </a>
-      <a class="link-card" href="responsive-recipe/index.html">
-        <span class="card-num">04</span>
-        <span class="card-title">Responsive Recipe</span>
-        <span class="card-arrow">→</span>
-      </a>
-      <a class="link-card" href="recipe-minisite/index.html">
-        <span class="card-num">05</span>
-        <span class="card-title">Recipe Minisite</span>
-        <span class="card-arrow">→</span>
-      </a>
-      <a class="link-card" href="rhododendron/index.html">
-        <span class="card-num">06</span>
-        <span class="card-title">Rhododendron</span>
-        <span class="card-arrow">→</span>
-      </a>
-      <a class="link-card" href="anni-albers/index.html">
-        <span class="card-num">07</span>
-        <span class="card-title">Anni Albers</span>
-        <span class="card-arrow">→</span>
-      </a>
-      <a class="link-card" href="activity21.html">
-        <span class="card-num">08</span>
-        <span class="card-title">Activity 21</span>
-        <span class="card-arrow">→</span>
-      </a>
-    </div>
-
-    <!-- TINY PROJECTS -->
-    <div class="section-label tp-section" id="tiny-projects">
-      <span>Tiny Projects</span>
-      <span class="count">10 items</span>
-    </div>
-
-    <div class="link-grid tp-section">
-      <a class="link-card" href="codelogs/log1.html">
-        <span class="card-num">TP1</span>
-        <span class="card-title">Code Log 1</span>
-        <span class="card-arrow">→</span>
-      </a>
-      <a class="link-card" href="codelogs/log2.html">
-        <span class="card-num">TP2</span>
-        <span class="card-title">Code Log 2</span>
-        <span class="card-arrow">→</span>
-      </a>
-      <a class="link-card" href="codelogs/log3.html">
-        <span class="card-num">TP3</span>
-        <span class="card-title">Code Log 3</span>
-        <span class="card-arrow">→</span>
-      </a>
-      <a class="link-card" href="codelogs/log4.html">
-        <span class="card-num">TP4</span>
-        <span class="card-title">Code Log 4</span>
-        <span class="card-arrow">→</span>
-      </a>
-      <a class="link-card" href="codelogs/log5.html">
-        <span class="card-num">TP5</span>
-        <span class="card-title">Code Log 5</span>
-        <span class="card-arrow">→</span>
-      </a>
-      <a class="link-card" href="codelogs/log6.html">
-        <span class="card-num">TP6</span>
-        <span class="card-title">Code Log 6</span>
-        <span class="card-arrow">→</span>
-      </a>
-      <a class="link-card" href="dark-flower/index.html">
-        <span class="card-num">TP8</span>
-        <span class="card-title">Dark Flower</span>
-        <span class="card-arrow">→</span>
-      </a>
-      <a class="link-card" href="#">
-        <span class="card-num">TP10</span>
-        <span class="card-title">This Page</span>
-        <span class="card-arrow">→</span>
-      </a>
-    </div>
-
-  </main>
+  </section>
 
   <!-- FOOTER -->
   <footer>
-    <span>Lenox — WSU DTC 355 — Spring 2025</span>
-    <a href="https://github.com/tualal/tualal.github.io" target="_blank" rel="noopener">github.com/tualal</a>
+    <div class="footer-inner">
+      <span class="footer-name">Lenox Tuala</span>
+      <div class="footer-links">
+        <a href="https://github.com/tualal" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/lenox-tuala-a7a87829a/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:lenoxtuala7@gmail.com">Email</a>
+      </div>
+      <span class="footer-copy">&copy; 2026 Lenox Tuala</span>
+    </div>
   </footer>
 
 </body>
 </html>
-
 
 
 
