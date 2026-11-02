@@ -11,8 +11,8 @@ plain CSS with light/dark tokens, `vite-plugin-pwa`. No backend.
 ```bash
 npm install
 npm run dev        # http://localhost:5173
-npm run build      # typecheck + production build in dist/
-npm run preview    # serve dist/ (service worker is active here, not in dev)
+npm run build      # typecheck + production build into ../nearby-picks/
+npm run preview    # serve the build (service worker is active here, not in dev)
 npm test           # scoring unit tests (node:test)
 ```
 
@@ -65,8 +65,9 @@ Basemaps default to OpenFreeMap `positron` (light) and `dark`. Override with `VI
 
 ## Deploying on GitHub Pages
 
-The build uses a relative base, so `dist/` works from any sub-path (e.g. `/nearby-picks/`). This folder holds
-source only; publish `dist/` with a Pages workflow or by copying it into the site.
+Live at https://tualal.github.io/nearby-picks/. This folder (`nearby-picks-src/`) is the source; `npm run build`
+writes the static app to `../nearby-picks/`, which GitHub Pages serves as-is. To ship a change: build, then
+commit both folders. The build uses a relative base, so it also works from any other sub-path.
 
 ## Later phases (not built)
 

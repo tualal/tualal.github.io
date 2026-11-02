@@ -5,7 +5,19 @@ import { VitePWA } from 'vite-plugin-pwa';
 export default defineConfig({
   base: './',
   // MapLibre alone is ~1 MB minified; that's expected for a map-first app.
-  build: { chunkSizeWarningLimit: 1500 },
+  build: {
+    chunkSizeWarningLimit: 1500,
+    // The built app is committed at ../nearby-picks so GitHub Pages serves it at /nearby-picks/.
+    outDir: '../nearby-picks',
+    emptyOutDir: true,
+    rolldownOptions: {
+      output: {
+        // Serve MapLibre's worker as .js: every static host sends a JavaScript MIME type for that.
+        assetFileNames: (info) =>
+          (info.names?.[0] ?? '').endsWith('.mjs') ? 'assets/[name]-[hash].js' : 'assets/[name]-[hash][extname]',
+      },
+    },
+  },
   plugins: [
     VitePWA({
       registerType: 'autoUpdate',
