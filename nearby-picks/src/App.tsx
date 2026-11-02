@@ -1,0 +1,176 @@
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import rawSpots from './data/spots.json';
+import type { Home, Spot, SpotWithDistance } from './types';
+import { bandFor, haversineMiles } from './lib/geo';
+import { applyFilters, EMPTY_FILTERS, facetCounts, type Filters } from './lib/filters';
+import { usePersistentState, useSpotMarks } from './lib/storage';
+import { MapView } from './components/MapView';
+import { FilterBar } from './components/FilterBar';
+import { Legend } from './components/Legend';
+import { DetailCard } from './components/DetailCard';
+import { ListView } from './components/ListView';
+import { DEFAULT_HOME, HomeControl } from './components/HomeControl';
+
+const spots = rawSpots as Spot[];
+
+type ThemePref = 'system' | 'light' | 'dark';
+type View = 'map' | 'list';
+
+const isHome = (v: unknown): v is Home =>
+  typeof v === 'object' &&
+  v !== null &&
+  Number.isFinite((v as Home).lat) &&
+  Number.isFinite((v as Home).lon) &&
+  typeof (v as Home).label === 'string';
+
+const isThemePref = (v: unknown): v is ThemePref => v === 'system' || v === 'light' || v === 'dark';
+
+function useSystemDark() {
+  const [dark, setDark] = useState(() => matchMedia('(prefers-color-scheme: dark)').matches);
+  useEffect(() => {
+    const mq = matchMedia('(prefers-color-scheme: dark)');
+    const fn = (e: MediaQueryListEvent) => setDark(e.matches);
+    mq.addEventListener('change', fn);
+    return () => mq.removeEventListener('change', fn);
+  }, []);
+  return dark;
+}
+
+export default function App() {
+  const [home, setHome] = usePersistentState<Home>('np.home.v1', DEFAULT_HOME, isHome);
+  const [themePref, setThemePref] = usePersistentState<ThemePref>('np.theme', 'system', isThemePref);
+  const [filters, setFilters] = useState<Filters>(EMPTY_FILTERS);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [focusToken, setFocusToken] = useState(0);
+  const [view, setView] = useState<View>('map');
+  const [homeOpen, setHomeOpen] = useState(false);
+  const [pickingHome, setPickingHome] = useState(false);
+  const marks = useSpotMarks();
+
+  const systemDark = useSystemDark();
+  const theme = themePref === 'system' ? (systemDark ? 'dark' : 'light') : themePref;
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+  }, [theme]);
+
+  const withDistance: SpotWithDistance[] = useMemo(
+    () =>
+      spots.map((s) => {
+        const miles = haversineMiles(home.lat, home.lon, s.lat, s.lon);
+        return { ...s, miles, band: bandFor(miles) };
+      }),
+    [home.lat, home.lon],
+  );
+  const visible = useMemo(() => applyFilters(withDistance, filters), [withDistance, filters]);
+  const counts = useMemo(() => facetCounts(withDistance, filters), [withDistance, filters]);
+
+  // Drop the selection if filters hide it.
+  const selected = visible.find((s) => s.id === selectedId) ?? null;
+  useEffect(() => {
+    if (selectedId && !selected) setSelectedId(null);
+  }, [selectedId, selected]);
+
+  const selectFromList = useCallback((id: string) => {
+    setSelectedId(id);
+    setFocusToken((n) => n + 1);
+    // On phones the list covers the map; jump back so the user sees the pin and card.
+    if (matchMedia('(max-width: 899px)').matches) setView('map');
+  }, []);
+
+  const setHomeAndClose = (h: Home) => {
+    setHome(h);
+    setPickingHome(false);
+    setHomeOpen(false);
+  };
+
+  const cycleTheme = () =>
+    setThemePref((p) => (p === 'system' ? (systemDark ? 'light' : 'dark') : p === 'light' ? 'dark' : 'system'));
+
+  return (
+    <div className="app" data-view={view}>
+      <header className="topbar">
+        <h1>Nearby Picks</h1>
+        <button type="button" className="home-btn" onClick={() => setHomeOpen((o) => !o)} aria-expanded={homeOpen}>
+          <span aria-hidden="true">⌂</span> {home.label}
+        </button>
+        <button
+          type="button"
+          className="icon-btn"
+          onClick={cycleTheme}
+          aria-label={`Theme: ${themePref}. Change theme`}
+          title={`Theme: ${themePref}`}
+        >
+          {themePref === 'system' ? '◐' : themePref === 'dark' ? '☾' : '☀'}
+        </button>
+      </header>
+
+      {homeOpen && (
+        <HomeControl
+          home={home}
+          picking={pickingHome}
+          onSetHome={setHomeAndClose}
+          onStartPicking={() => {
+            setPickingHome(true);
+            setHomeOpen(false);
+            setSelectedId(null);
+            setView('map');
+          }}
+          onClose={() => {
+            setHomeOpen(false);
+            setPickingHome(false);
+          }}
+        />
+      )}
+
+      <aside className="sidebar">
+        <FilterBar filters={filters} counts={counts} onChange={setFilters} />
+        <div className="view-toggle" role="tablist" aria-label="View">
+          {(['map', 'list'] as const).map((v) => (
+            <button key={v} type="button" role="tab" aria-selected={view === v} onClick={() => setView(v)}>
+              {v === 'map' ? 'Map' : `List (${visible.length})`}
+            </button>
+          ))}
+        </div>
+        <ListView
+          spots={visible}
+          selectedId={selectedId}
+          showCategory={filters.category === 'all'}
+          isMarked={marks.has}
+          onSelect={selectFromList}
+        />
+      </aside>
+
+      <main className="map-wrap">
+        <MapView
+          spots={visible}
+          home={home}
+          selectedId={selectedId}
+          theme={theme}
+          pickingHome={pickingHome}
+          isMarked={marks.has}
+          onSelect={setSelectedId}
+          onPickHome={(lat, lon) => setHomeAndClose({ lat, lon, label: 'Dropped pin' })}
+          focusToken={focusToken}
+        />
+        {pickingHome && (
+          <div className="picking-hint" role="status">
+            Tap the map to set your home point
+            <button type="button" className="link-btn" onClick={() => setPickingHome(false)}>
+              Cancel
+            </button>
+          </div>
+        )}
+        {!selected && <Legend />}
+        {selected && (
+          <DetailCard
+            spot={selected}
+            homeLabel={home.label}
+            isMarked={marks.has}
+            onToggleMark={marks.toggle}
+            onClose={() => setSelectedId(null)}
+          />
+        )}
+      </main>
+    </div>
+  );
+}

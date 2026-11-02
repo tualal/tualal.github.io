@@ -1,0 +1,16 @@
+{
+  "$comment": "Curated 'best of' lists. A spot gets bonusPerList for each list it appears on, capped at maxBonus, added to its Bayesian-adjusted rating. Match by googlePlaceId when known, otherwise by name. Entries below are placeholders: replace with lists you trust and keep the source URL.",
+  "bonusPerList": 0.1,
+  "maxBonus": 0.25,
+  "lists": [
+    {
+      "name": "Example: Local critics' top 50 (replace me)",
+      "url": "",
+      "year": 2026,
+      "places": [
+        { "name": "Apizza Scholls" },
+        { "name": "Tortillería y Tienda de León" }
+      ]
+    }
+  ]
+}

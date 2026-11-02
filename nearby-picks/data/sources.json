@@ -1,0 +1,252 @@
+{
+  "$comment": "Inputs for scripts/fetch-spots.mjs. Trail difficulty is manual (Places has no difficulty data). Food tier is computed from score.",
+  "home": {
+    "lat": 45.498,
+    "lon": -122.431
+  },
+  "radiusMiles": 30,
+  "food": {
+    "queries": [
+      "best restaurants in Gresham, OR",
+      "best restaurants in Troutdale, OR",
+      "best restaurants in East Portland, OR",
+      "best coffee shop Gresham, OR",
+      "best bakery Gresham, OR",
+      "best taqueria Gresham, OR"
+    ],
+    "include": [
+      {
+        "id": "food-boccherinis",
+        "query": "Boccherini's Coffee & Tea House near Gresham OR",
+        "tags": [
+          "coffee",
+          "cafe",
+          "downtown"
+        ],
+        "notes": "Downtown Gresham coffeehouse with pastries and frequent live music."
+      },
+      {
+        "id": "food-tienda-de-leon",
+        "query": "Tortillería y Tienda de León near Gresham OR",
+        "tags": [
+          "mexican",
+          "tamales",
+          "takeout"
+        ],
+        "notes": "Grocery-counter guisados, house-made tortillas and tamales."
+      },
+      {
+        "id": "food-edgefield",
+        "query": "McMenamins Edgefield near Gresham OR",
+        "tags": [
+          "pub",
+          "brewery",
+          "outdoor"
+        ],
+        "notes": "Sprawling former poor farm with pubs, gardens and a concert lawn."
+      },
+      {
+        "id": "food-tads",
+        "query": "Tad's Chicken 'n Dumplins near Gresham OR",
+        "tags": [
+          "american",
+          "classic",
+          "river-view"
+        ],
+        "notes": "Old-school roadhouse on the Sandy River since the 1920s."
+      },
+      {
+        "id": "food-sugarpine",
+        "query": "Sugarpine Drive-In near Gresham OR",
+        "tags": [
+          "dessert",
+          "burgers",
+          "outdoor"
+        ],
+        "notes": "Riverside drive-in known for soft serve sundaes; good post-Gorge stop."
+      },
+      {
+        "id": "food-ya-hala",
+        "query": "Ya Hala Lebanese Cuisine near Gresham OR",
+        "tags": [
+          "lebanese",
+          "mediterranean",
+          "market"
+        ],
+        "notes": "Montavilla Lebanese restaurant with an attached market."
+      },
+      {
+        "id": "food-hk-cafe",
+        "query": "HK Cafe near Gresham OR",
+        "tags": [
+          "dim-sum",
+          "chinese",
+          "brunch"
+        ],
+        "notes": "Cart-style dim sum on 82nd; busy weekend mornings."
+      },
+      {
+        "id": "food-pho-oregon",
+        "query": "Pho Oregon near Gresham OR",
+        "tags": [
+          "vietnamese",
+          "pho",
+          "casual"
+        ],
+        "notes": "Big bowls of pho on NE 82nd; quick service."
+      },
+      {
+        "id": "food-apizza-scholls",
+        "query": "Apizza Scholls near Gresham OR",
+        "tags": [
+          "pizza",
+          "reservations"
+        ],
+        "notes": "New Haven–leaning pies on Hawthorne; reserve ahead."
+      },
+      {
+        "id": "food-multnomah-falls-lodge",
+        "query": "Multnomah Falls Lodge near Gresham OR",
+        "tags": [
+          "american",
+          "historic",
+          "views"
+        ],
+        "notes": "1925 stone lodge at the base of the falls; pairs with the loop hike."
+      }
+    ],
+    "minReviews": 75,
+    "priorWeight": 150,
+    "tierThresholds": {
+      "must-try": 4.6,
+      "great": 4.4,
+      "good": 4.2
+    },
+    "maxSpots": 40
+  },
+  "trails": [
+    {
+      "id": "trail-springwater-gresham",
+      "name": "Springwater Corridor (Gresham Main City Park)",
+      "query": "Springwater Corridor (Gresham Main City Park) Oregon",
+      "difficulty": "easy",
+      "tags": [
+        "paved",
+        "bike",
+        "dog-friendly",
+        "stroller"
+      ],
+      "notes": "Flat paved rail-trail; head east toward Boring or west along Johnson Creek."
+    },
+    {
+      "id": "trail-gresham-butte",
+      "name": "Gresham Butte Saddle Trail",
+      "query": "Gresham Butte Saddle Trail Oregon",
+      "difficulty": "moderate",
+      "tags": [
+        "forest",
+        "dog-friendly",
+        "short"
+      ],
+      "notes": "Steep switchbacks through second-growth forest; muddy in winter."
+    },
+    {
+      "id": "trail-powell-butte",
+      "name": "Powell Butte Nature Park",
+      "query": "Powell Butte Nature Park Oregon",
+      "difficulty": "easy",
+      "tags": [
+        "views",
+        "meadow",
+        "bike",
+        "dog-friendly"
+      ],
+      "notes": "Summit meadow with Mt. Hood views on clear days; mixed-use trails."
+    },
+    {
+      "id": "trail-lewis-clark-sp",
+      "name": "Lewis and Clark State Recreation Site",
+      "query": "Lewis and Clark State Recreation Site Oregon",
+      "difficulty": "easy",
+      "tags": [
+        "river",
+        "short",
+        "dog-friendly"
+      ],
+      "notes": "Short Oak Trail loop at the mouth of the Sandy River."
+    },
+    {
+      "id": "trail-oxbow",
+      "name": "Oxbow Regional Park",
+      "query": "Oxbow Regional Park Oregon",
+      "difficulty": "easy",
+      "tags": [
+        "river",
+        "old-growth",
+        "camping"
+      ],
+      "notes": "Old-growth forest along the Sandy River; Metro parking fee. No dogs."
+    },
+    {
+      "id": "trail-mt-talbert",
+      "name": "Mt. Talbert Nature Park",
+      "query": "Mt. Talbert Nature Park Oregon",
+      "difficulty": "moderate",
+      "tags": [
+        "forest",
+        "loop",
+        "wildlife"
+      ],
+      "notes": "4-mile loop climbing an extinct volcano; quiet on weekdays. No dogs."
+    },
+    {
+      "id": "trail-latourell-falls",
+      "name": "Latourell Falls Loop",
+      "query": "Latourell Falls Loop Oregon",
+      "difficulty": "moderate",
+      "tags": [
+        "waterfall",
+        "gorge",
+        "loop"
+      ],
+      "notes": "2.4-mile loop past upper and lower falls; first waterfall on the Historic Highway."
+    },
+    {
+      "id": "trail-angels-rest",
+      "name": "Angel's Rest Trail",
+      "query": "Angel's Rest Trail Oregon",
+      "difficulty": "hard",
+      "tags": [
+        "views",
+        "gorge",
+        "steep"
+      ],
+      "notes": "~1,500 ft gain in 2.4 mi to an exposed bluff over the Columbia. Go early."
+    },
+    {
+      "id": "trail-multnomah-wahkeena",
+      "name": "Multnomah–Wahkeena Falls Loop",
+      "query": "Multnomah–Wahkeena Falls Loop Oregon",
+      "difficulty": "hard",
+      "tags": [
+        "waterfall",
+        "gorge",
+        "loop",
+        "steep"
+      ],
+      "notes": "5-mile loop with ~1,600 ft gain. Seasonal timed-entry permits may apply."
+    },
+    {
+      "id": "trail-beacon-rock",
+      "name": "Beacon Rock Summit Trail",
+      "query": "Beacon Rock State Park Washington",
+      "difficulty": "moderate",
+      "tags": [
+        "views",
+        "gorge",
+        "washington"
+      ],
+      "notes": "Short but exposed switchbacks with railings; Discover Pass required (WA)."
+    }
+  ]
+}

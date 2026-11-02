@@ -1,0 +1,395 @@
+{
+ "Springwater Corridor (Gresham Main City Park) Oregon": [
+  {
+   "id": "pid_trail-springwater-gresham",
+   "displayName": {
+    "text": "Springwater Corridor (Gresham Main City Park)"
+   },
+   "location": {
+    "latitude": 45.4936,
+    "longitude": -122.4338
+   },
+   "rating": 4.7,
+   "userRatingCount": 1450,
+   "businessStatus": "OPERATIONAL"
+  }
+ ],
+ "Gresham Butte Saddle Trail Oregon": [
+  {
+   "id": "pid_trail-gresham-butte",
+   "displayName": {
+    "text": "Gresham Butte Saddle Trail"
+   },
+   "location": {
+    "latitude": 45.4838,
+    "longitude": -122.4248
+   },
+   "rating": 4.5,
+   "userRatingCount": 210,
+   "businessStatus": "OPERATIONAL"
+  }
+ ],
+ "Powell Butte Nature Park Oregon": [
+  {
+   "id": "pid_trail-powell-butte",
+   "displayName": {
+    "text": "Powell Butte Nature Park"
+   },
+   "location": {
+    "latitude": 45.488,
+    "longitude": -122.501
+   },
+   "rating": 4.8,
+   "userRatingCount": 3100,
+   "businessStatus": "OPERATIONAL"
+  }
+ ],
+ "Lewis and Clark State Recreation Site Oregon": [
+  {
+   "id": "pid_trail-lewis-clark-sp",
+   "displayName": {
+    "text": "Lewis and Clark State Recreation Site"
+   },
+   "location": {
+    "latitude": 45.5492,
+    "longitude": -122.3897
+   },
+   "rating": 4.5,
+   "userRatingCount": 900,
+   "businessStatus": "OPERATIONAL"
+  }
+ ],
+ "Oxbow Regional Park Oregon": [
+  {
+   "id": "pid_trail-oxbow",
+   "displayName": {
+    "text": "Oxbow Regional Park"
+   },
+   "location": {
+    "latitude": 45.4964,
+    "longitude": -122.2944
+   },
+   "rating": 4.7,
+   "userRatingCount": 2300,
+   "businessStatus": "OPERATIONAL"
+  }
+ ],
+ "Mt. Talbert Nature Park Oregon": [
+  {
+   "id": "pid_trail-mt-talbert",
+   "displayName": {
+    "text": "Mt. Talbert Nature Park"
+   },
+   "location": {
+    "latitude": 45.4245,
+    "longitude": -122.5441
+   },
+   "rating": 4.6,
+   "userRatingCount": 600,
+   "businessStatus": "OPERATIONAL"
+  }
+ ],
+ "Latourell Falls Loop Oregon": [
+  {
+   "id": "pid_trail-latourell-falls",
+   "displayName": {
+    "text": "Latourell Falls Loop"
+   },
+   "location": {
+    "latitude": 45.5394,
+    "longitude": -122.2177
+   },
+   "rating": 4.8,
+   "userRatingCount": 4200,
+   "businessStatus": "OPERATIONAL"
+  }
+ ],
+ "Angel's Rest Trail Oregon": [
+  {
+   "id": "pid_trail-angels-rest",
+   "displayName": {
+    "text": "Angel's Rest Trail"
+   },
+   "location": {
+    "latitude": 45.5602,
+    "longitude": -122.1726
+   },
+   "rating": 4.8,
+   "userRatingCount": 3800,
+   "businessStatus": "OPERATIONAL"
+  }
+ ],
+ "Multnomah–Wahkeena Falls Loop Oregon": [
+  {
+   "id": "pid_trail-multnomah-wahkeena",
+   "displayName": {
+    "text": "Multnomah–Wahkeena Falls Loop"
+   },
+   "location": {
+    "latitude": 45.5762,
+    "longitude": -122.1153
+   },
+   "rating": 4.8,
+   "userRatingCount": 5200,
+   "businessStatus": "OPERATIONAL"
+  }
+ ],
+ "Beacon Rock State Park Washington": [
+  {
+   "id": "pid_trail-beacon-rock",
+   "displayName": {
+    "text": "Beacon Rock Summit Trail"
+   },
+   "location": {
+    "latitude": 45.6288,
+    "longitude": -122.0213
+   },
+   "rating": 4.8,
+   "userRatingCount": 2900,
+   "businessStatus": "OPERATIONAL"
+  }
+ ],
+ "Boccherini's Coffee & Tea House near Gresham OR": [
+  {
+   "id": "pid_food-boccherinis",
+   "displayName": {
+    "text": "Boccherini's Coffee & Tea House"
+   },
+   "location": {
+    "latitude": 45.4979,
+    "longitude": -122.4314
+   },
+   "rating": 4.6,
+   "userRatingCount": 820,
+   "businessStatus": "OPERATIONAL"
+  }
+ ],
+ "Tortillería y Tienda de León near Gresham OR": [
+  {
+   "id": "pid_food-tienda-de-leon",
+   "displayName": {
+    "text": "Tortillería y Tienda de León"
+   },
+   "location": {
+    "latitude": 45.5266,
+    "longitude": -122.4975
+   },
+   "rating": 4.6,
+   "userRatingCount": 2400,
+   "businessStatus": "OPERATIONAL"
+  }
+ ],
+ "McMenamins Edgefield near Gresham OR": [
+  {
+   "id": "pid_food-edgefield",
+   "displayName": {
+    "text": "McMenamins Edgefield"
+   },
+   "location": {
+    "latitude": 45.5394,
+    "longitude": -122.4004
+   },
+   "rating": 4.5,
+   "userRatingCount": 9800,
+   "businessStatus": "OPERATIONAL"
+  }
+ ],
+ "Tad's Chicken 'n Dumplins near Gresham OR": [
+  {
+   "id": "pid_food-tads",
+   "displayName": {
+    "text": "Tad's Chicken 'n Dumplins"
+   },
+   "location": {
+    "latitude": 45.5378,
+    "longitude": -122.379
+   },
+   "rating": 4.4,
+   "userRatingCount": 2600,
+   "businessStatus": "OPERATIONAL"
+  }
+ ],
+ "Sugarpine Drive-In near Gresham OR": [
+  {
+   "id": "pid_food-sugarpine",
+   "displayName": {
+    "text": "Sugarpine Drive-In"
+   },
+   "location": {
+    "latitude": 45.5393,
+    "longitude": -122.3764
+   },
+   "rating": 4.6,
+   "userRatingCount": 1900,
+   "businessStatus": "OPERATIONAL"
+  }
+ ],
+ "Ya Hala Lebanese Cuisine near Gresham OR": [
+  {
+   "id": "pid_food-ya-hala",
+   "displayName": {
+    "text": "Ya Hala Lebanese Cuisine"
+   },
+   "location": {
+    "latitude": 45.5193,
+    "longitude": -122.5806
+   },
+   "rating": 4.6,
+   "userRatingCount": 1700,
+   "businessStatus": "OPERATIONAL"
+  }
+ ],
+ "HK Cafe near Gresham OR": [
+  {
+   "id": "pid_food-hk-cafe",
+   "displayName": {
+    "text": "HK Cafe"
+   },
+   "location": {
+    "latitude": 45.5047,
+    "longitude": -122.579
+   },
+   "rating": 4.3,
+   "userRatingCount": 2800,
+   "businessStatus": "OPERATIONAL"
+  }
+ ],
+ "Pho Oregon near Gresham OR": [
+  {
+   "id": "pid_food-pho-oregon",
+   "displayName": {
+    "text": "Pho Oregon"
+   },
+   "location": {
+    "latitude": 45.5397,
+    "longitude": -122.5784
+   },
+   "rating": 4.5,
+   "userRatingCount": 2300,
+   "businessStatus": "OPERATIONAL"
+  }
+ ],
+ "Apizza Scholls near Gresham OR": [
+  {
+   "id": "pid_food-apizza-scholls",
+   "displayName": {
+    "text": "Apizza Scholls"
+   },
+   "location": {
+    "latitude": 45.5124,
+    "longitude": -122.6142
+   },
+   "rating": 4.7,
+   "userRatingCount": 2500,
+   "businessStatus": "OPERATIONAL"
+  }
+ ],
+ "Multnomah Falls Lodge near Gresham OR": [
+  {
+   "id": "pid_food-multnomah-falls-lodge",
+   "displayName": {
+    "text": "Multnomah Falls Lodge"
+   },
+   "location": {
+    "latitude": 45.5765,
+    "longitude": -122.1157
+   },
+   "rating": 4.3,
+   "userRatingCount": 3300,
+   "businessStatus": "OPERATIONAL"
+  }
+ ],
+ "best restaurants in Gresham, OR": [
+  {
+   "id": "pid_food-boccherinis",
+   "displayName": {
+    "text": "Boccherini's Coffee & Tea House"
+   },
+   "location": {
+    "latitude": 45.4979,
+    "longitude": -122.4314
+   },
+   "rating": 4.6,
+   "userRatingCount": 820,
+   "businessStatus": "OPERATIONAL"
+  },
+  {
+   "id": "pid_tiny",
+   "displayName": {
+    "text": "Brand New Noodle Bar"
+   },
+   "location": {
+    "latitude": 45.5,
+    "longitude": -122.44
+   },
+   "rating": 5,
+   "userRatingCount": 80,
+   "businessStatus": "OPERATIONAL"
+  },
+  {
+   "id": "pid_solid",
+   "displayName": {
+    "text": "Neighborhood Thai Kitchen"
+   },
+   "location": {
+    "latitude": 45.505,
+    "longitude": -122.42
+   },
+   "rating": 4.7,
+   "userRatingCount": 1600,
+   "businessStatus": "OPERATIONAL"
+  },
+  {
+   "id": "pid_closed",
+   "displayName": {
+    "text": "Closed Diner"
+   },
+   "location": {
+    "latitude": 45.49,
+    "longitude": -122.43
+   },
+   "rating": 4.8,
+   "userRatingCount": 900,
+   "businessStatus": "CLOSED_PERMANENTLY"
+  },
+  {
+   "id": "pid_meh",
+   "displayName": {
+    "text": "Average Burger"
+   },
+   "location": {
+    "latitude": 45.51,
+    "longitude": -122.45
+   },
+   "rating": 3.9,
+   "userRatingCount": 700,
+   "businessStatus": "OPERATIONAL"
+  },
+  {
+   "id": "pid_far",
+   "displayName": {
+    "text": "Seattle Spot"
+   },
+   "location": {
+    "latitude": 47.6,
+    "longitude": -122.33
+   },
+   "rating": 4.9,
+   "userRatingCount": 5000,
+   "businessStatus": "OPERATIONAL"
+  },
+  {
+   "id": "pid_few",
+   "displayName": {
+    "text": "Ten Review Cafe"
+   },
+   "location": {
+    "latitude": 45.5,
+    "longitude": -122.43
+   },
+   "rating": 5,
+   "userRatingCount": 10,
+   "businessStatus": "OPERATIONAL"
+  }
+ ]
+}
