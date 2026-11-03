@@ -45,15 +45,21 @@ npm run fetch-spots
 
 `scripts/fetch-spots.mjs` runs only in Node. The key is never prefixed `VITE_`, so Vite cannot expose it to client code.
 
-- **Inputs:** `data/sources.json` (search queries, radius, thresholds, the trail list with **manual difficulty**,
-  hand-picked food `include`s) and `data/press-picks.json` (curated lists).
+- **Areas:** `data/sources.json` → `areas[]`. Each has an id, label, center, radius and a few `towns`. Food and
+  trail searches are templates (`"best restaurants in {town}"`) run for every town, so adding a region is one entry.
+  `npm run fetch-spots -- --area <id>` refreshes one area and leaves the rest alone. The app reads the area list
+  from `src/data/areas.json` and tells the user when their home point is outside every area.
 - **Food score** = Bayesian-adjusted rating `(v/(v+m))·R + (m/(v+m))·C`, where `C` is the review-weighted mean of
-  the candidate set and `m` = `food.priorWeight`, plus `bonusPerList` for each curated list the place appears on
-  (capped at `maxBonus`). Tier comes from `food.tierThresholds`; anything below "good" is dropped (except `include`s).
-- **Trails** use their configured `difficulty` as the tier; Places only supplies location, rating and place id.
-- Permanently closed places, places outside `radiusMiles`, and food below `minReviews` are skipped.
-- Existing ids, notes and tags are preserved across runs (matched by place id).
-- Offline test run: `node scripts/fetch-spots.mjs --fixture scripts/fixtures/sample-places.json --dry-run`.
+  all candidates (shared across areas, so tiers mean the same everywhere) and `m` = `food.priorWeight`, plus
+  `bonusPerList` for each list in `data/press-picks.json` the place appears on (capped at `maxBonus`). Tier comes
+  from `food.tierThresholds`; anything below "good" is dropped, except hand-picked `food.include` entries.
+  Up to `food.maxSpotsPerArea` per area.
+- **Trails** only appear once they have a manual `difficulty` in `trails[]`. Trails found by search that aren't
+  rated yet go to `data/trail-candidates.json`: set `difficulty`, move the entry into `trails[]`, and re-run.
+- Permanently closed places, places outside their area's radius, and food below `minReviews` are skipped.
+  Ids, notes and tags carry over between runs (matched by place id).
+- Cost: roughly 30–50 Text Search requests per area per run (the script prints the count).
+- Offline test run with fake places, no key: `npm run fetch-spots:fixture`.
 
 Note: Google Maps Platform terms limit how long Places content (ratings, review counts, coordinates) may be
 stored; place IDs may be kept indefinitely. Check the current terms before publishing a long-lived snapshot.

@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import rawSpots from './data/spots.json';
-import type { Home, Spot, SpotWithDistance } from './types';
+import rawAreas from './data/areas.json';
+import type { Area, Home, Spot, SpotWithDistance } from './types';
 import { bandFor, haversineMiles } from './lib/geo';
 import { applyFilters, EMPTY_FILTERS, facetCounts, type Filters } from './lib/filters';
 import { usePersistentState, useSpotMarks } from './lib/storage';
@@ -12,6 +13,7 @@ import { ListView } from './components/ListView';
 import { DEFAULT_HOME, HomeControl } from './components/HomeControl';
 
 const spots = rawSpots as Spot[];
+const areas = rawAreas as Area[];
 
 type ThemePref = 'system' | 'light' | 'dark';
 type View = 'map' | 'list';
@@ -61,11 +63,12 @@ export default function App() {
       }),
     [home.lat, home.lon],
   );
-  // The data is a fixed snapshot of one area. Say so when home moves somewhere it doesn't cover,
-  // instead of silently showing far-away pins.
+  // The data is a fixed snapshot of the areas in areas.json. Say so when home moves somewhere they
+  // don't cover, instead of silently showing far-away pins.
   const nearbyCount = withDistance.filter((s) => s.miles <= 15).length;
   const nearestMiles = Math.min(...withDistance.map((s) => s.miles));
-  const outOfArea = nearbyCount < 3;
+  const outOfArea =
+    nearbyCount < 3 && !areas.some((a) => haversineMiles(home.lat, home.lon, a.lat, a.lon) <= a.radiusMiles);
   const [dismissedFor, setDismissedFor] = useState<string | null>(null);
   const homeKey = `${home.lat.toFixed(3)},${home.lon.toFixed(3)}`;
 
@@ -165,13 +168,20 @@ export default function App() {
             <p>
               <strong>{nearbyCount === 0 ? 'No spots' : `Only ${nearbyCount} spot${nearbyCount === 1 ? '' : 's'}`} within 15 mi of
               this home.</strong>{' '}
-              Nearby Picks only has data for the Gresham and east Portland area so far, so moving home recolors the
-              pins but can't add new ones. Nearest spot: {Math.round(nearestMiles)} mi.
+              Nearby Picks covers {areas.length === 1 ? 'one area' : `${areas.length} areas`} so far, so here it can only
+              recolor pins, not find new ones. Nearest spot: {Math.round(nearestMiles)} mi.
             </p>
             <div className="coverage-actions">
-              <button type="button" className="primary-btn" onClick={() => setHome(DEFAULT_HOME)}>
-                Back to Gresham
-              </button>
+              {areas.map((a) => (
+                <button
+                  key={a.id}
+                  type="button"
+                  className="primary-btn"
+                  onClick={() => setHome({ lat: a.lat, lon: a.lon, label: a.label })}
+                >
+                  Go to {a.label}
+                </button>
+              ))}
               <button type="button" className="link-btn" onClick={() => setDismissedFor(homeKey)}>
                 Dismiss
               </button>

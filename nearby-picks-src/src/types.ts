@@ -17,6 +17,17 @@ export interface Spot {
   notes: string;
   /** Empty until scripts/fetch-spots.mjs resolves it. */
   googlePlaceId: string;
+  /** Id of the coverage area (src/data/areas.json) this spot was fetched for. */
+  area?: string;
+}
+
+/** A region the data covers. Written by scripts/fetch-spots.mjs from data/sources.json. */
+export interface Area {
+  id: string;
+  label: string;
+  lat: number;
+  lon: number;
+  radiusMiles: number;
 }
 
 /** Distance band index: 0 = 0–5 mi, 1 = 5–10, 2 = 10–15, 3 = 15+. */

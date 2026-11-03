@@ -25,6 +25,22 @@ interface Props {
 
 maplibregl.setWorkerUrl(workerUrl);
 
+/** Keep fitted pins clear of the legend floating over the bottom of the map. */
+function fitPadding(container: HTMLElement | null) {
+  const legend = container?.parentElement?.querySelector<HTMLElement>('.legend, .legend-toggle');
+  return { top: 48, left: 40, right: 56, bottom: (legend?.offsetHeight ?? 0) + 48 };
+}
+
+/** Home plus the spots closest to it: everything within 15 mi, or at least the nearest 8. */
+function nearbyBounds(home: Home, spots: SpotWithDistance[]) {
+  const sorted = [...spots].sort((a, b) => a.miles - b.miles);
+  const within = sorted.filter((s) => s.miles <= 15);
+  const pick = within.length >= 8 ? within : sorted.slice(0, 8).filter((s) => s.miles <= 40);
+  const bounds = new maplibregl.LngLatBounds([home.lon, home.lat], [home.lon, home.lat]);
+  for (const s of pick) bounds.extend([s.lon, s.lat]);
+  return bounds;
+}
+
 function pinElement(onClick: () => void): HTMLButtonElement {
   const el = document.createElement('button');
   el.type = 'button';
@@ -87,10 +103,7 @@ export function MapView(props: Props) {
         map.setStyle(FALLBACK_STYLE);
       }
     });
-    // Initial view: home plus every spot, so the first screen shows the whole picture.
-    const bounds = new maplibregl.LngLatBounds([home.lon, home.lat], [home.lon, home.lat]);
-    for (const s of spots) bounds.extend([s.lon, s.lat]);
-    map.fitBounds(bounds, { padding: 40, maxZoom: 12, duration: 0 });
+    map.fitBounds(nearbyBounds(home, spots), { padding: fitPadding(containerRef.current), maxZoom: 12, duration: 0 });
     mapRef.current = map;
     const markers = markersRef.current;
     return () => {
@@ -128,7 +141,7 @@ export function MapView(props: Props) {
       homeMarkerRef.current = marker;
     } else {
       homeMarkerRef.current.setLngLat([home.lon, home.lat]);
-      map.easeTo({ center: [home.lon, home.lat], duration: 600 });
+      map.fitBounds(nearbyBounds(home, spots), { padding: fitPadding(containerRef.current), maxZoom: 12, duration: 800 });
     }
   }, [home.lat, home.lon]);
 

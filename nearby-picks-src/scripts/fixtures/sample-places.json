@@ -391,5 +391,117 @@
    "userRatingCount": 10,
    "businessStatus": "OPERATIONAL"
   }
+ ],
+ "best hiking trails near Gresham, OR": [
+  {
+   "id": "pid_trail-powell-butte",
+   "displayName": {
+    "text": "Powell Butte Nature Park"
+   },
+   "location": {
+    "latitude": 45.488,
+    "longitude": -122.501
+   },
+   "rating": 4.8,
+   "userRatingCount": 3100,
+   "businessStatus": "OPERATIONAL"
+  },
+  {
+   "id": "pid_newtrail",
+   "displayName": {
+    "text": "Unrated Creek Trail"
+   },
+   "location": {
+    "latitude": 45.45,
+    "longitude": -122.35
+   },
+   "rating": 4.6,
+   "userRatingCount": 300,
+   "businessStatus": "OPERATIONAL"
+  },
+  {
+   "id": "pid_fewtrail",
+   "displayName": {
+    "text": "Tiny Path"
+   },
+   "location": {
+    "latitude": 45.46,
+    "longitude": -122.36
+   },
+   "rating": 4.9,
+   "userRatingCount": 5,
+   "businessStatus": "OPERATIONAL"
+  }
+ ],
+ "best restaurants in Testville, OR": [
+  {
+   "id": "pid_tv1",
+   "displayName": {
+    "text": "Testville Diner"
+   },
+   "location": {
+    "latitude": 44.06,
+    "longitude": -123.08
+   },
+   "rating": 4.7,
+   "userRatingCount": 900,
+   "businessStatus": "OPERATIONAL"
+  },
+  {
+   "id": "pid_tv2",
+   "displayName": {
+    "text": "Testville Pizza"
+   },
+   "location": {
+    "latitude": 44.04,
+    "longitude": -123.1
+   },
+   "rating": 4.5,
+   "userRatingCount": 400,
+   "businessStatus": "OPERATIONAL"
+  }
+ ],
+ "Test Ridge Trail": [
+  {
+   "id": "pid_tvtrail",
+   "displayName": {
+    "text": "Test Ridge Trail"
+   },
+   "location": {
+    "latitude": 44.1,
+    "longitude": -123.2
+   },
+   "rating": 4.8,
+   "userRatingCount": 600,
+   "businessStatus": "OPERATIONAL"
+  }
+ ],
+ "best hiking trails near Testville, OR": [
+  {
+   "id": "pid_tvtrail",
+   "displayName": {
+    "text": "Test Ridge Trail"
+   },
+   "location": {
+    "latitude": 44.1,
+    "longitude": -123.2
+   },
+   "rating": 4.8,
+   "userRatingCount": 600,
+   "businessStatus": "OPERATIONAL"
+  },
+  {
+   "id": "pid_tvnew",
+   "displayName": {
+    "text": "Testville Falls"
+   },
+   "location": {
+    "latitude": 44.12,
+    "longitude": -123.25
+   },
+   "rating": 4.7,
+   "userRatingCount": 200,
+   "businessStatus": "OPERATIONAL"
+  }
  ]
 }
