@@ -14,6 +14,22 @@
         "Troutdale, OR",
         "East Portland, OR"
       ]
+    },
+    {
+      "id": "portland",
+      "label": "Portland metro",
+      "center": {
+        "lat": 45.505,
+        "lon": -122.72
+      },
+      "radiusMiles": 20,
+      "towns": [
+        "Portland, OR",
+        "Beaverton, OR",
+        "Hillsboro, OR",
+        "Lake Oswego, OR",
+        "Vancouver, WA"
+      ]
     }
   ],
   "food": {
@@ -301,6 +317,110 @@
         "washington"
       ],
       "notes": "Short but exposed switchbacks with railings; Discover Pass required (WA)."
+    },
+    {
+      "area": "portland",
+      "id": "trail-lower-macleay-pittock",
+      "name": "Lower Macleay Trail to Pittock Mansion",
+      "query": "Lower Macleay Trailhead Portland OR",
+      "difficulty": "moderate",
+      "tags": [
+        "forest",
+        "views",
+        "creek"
+      ],
+      "notes": "Up Balch Creek past the Stone House to Pittock Mansion; about 5 mi round trip with a steady climb."
+    },
+    {
+      "area": "portland",
+      "id": "trail-hoyt-arboretum",
+      "name": "Hoyt Arboretum",
+      "query": "Hoyt Arboretum Portland OR",
+      "difficulty": "easy",
+      "tags": [
+        "trees",
+        "loop",
+        "dog-friendly"
+      ],
+      "notes": "12 miles of short, well-signed loops through tree collections next to Washington Park."
+    },
+    {
+      "area": "portland",
+      "id": "trail-tryon-creek",
+      "name": "Tryon Creek State Natural Area",
+      "query": "Tryon Creek State Natural Area",
+      "difficulty": "easy",
+      "tags": [
+        "forest",
+        "creek",
+        "family"
+      ],
+      "notes": "Shaded canyon trails with bridges; muddy in winter. Nature center at the main entrance."
+    },
+    {
+      "area": "portland",
+      "id": "trail-mt-tabor",
+      "name": "Mt. Tabor Park",
+      "query": "Mt. Tabor Park Portland OR",
+      "difficulty": "easy",
+      "tags": [
+        "views",
+        "volcano",
+        "reservoirs"
+      ],
+      "notes": "Short climbs to a city volcano summit with sunset views over downtown."
+    },
+    {
+      "area": "portland",
+      "id": "trail-council-crest",
+      "name": "Marquam Trail to Council Crest",
+      "query": "Marquam Nature Park Trailhead Portland OR",
+      "difficulty": "moderate",
+      "tags": [
+        "views",
+        "forest",
+        "steep"
+      ],
+      "notes": "Climbs about 900 ft from Marquam Nature Park to one of the highest points in the city."
+    },
+    {
+      "area": "portland",
+      "id": "trail-cooper-mountain",
+      "name": "Cooper Mountain Nature Park",
+      "query": "Cooper Mountain Nature Park Beaverton OR",
+      "difficulty": "easy",
+      "tags": [
+        "prairie",
+        "views",
+        "wildlife"
+      ],
+      "notes": "Rolling oak and prairie loops with valley views; no dogs."
+    },
+    {
+      "area": "portland",
+      "id": "trail-tualatin-hills",
+      "name": "Tualatin Hills Nature Park",
+      "query": "Tualatin Hills Nature Park Beaverton OR",
+      "difficulty": "easy",
+      "tags": [
+        "forest",
+        "wetland",
+        "paved"
+      ],
+      "notes": "Flat, partly paved loops through wetland forest; good for strollers."
+    },
+    {
+      "area": "portland",
+      "id": "trail-lacamas-lake",
+      "name": "Lacamas Lake Regional Park",
+      "query": "Lacamas Lake Regional Park Camas WA",
+      "difficulty": "easy",
+      "tags": [
+        "lake",
+        "waterfall",
+        "washington"
+      ],
+      "notes": "Lake loop with Pothole Falls and spring camas lilies; about 3.5 mi."
     }
   ]
 }
