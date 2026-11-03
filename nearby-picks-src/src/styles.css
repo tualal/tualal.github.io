@@ -18,6 +18,7 @@
   --band-2: #df8a00;
   --band-3: #c8364a;
   --pin-stroke: #ffffff;
+  --glyph: #ffffff;
 
   --radius: 12px;
   --tap: 44px;
@@ -43,6 +44,7 @@
   --band-2: #f5aa2a;
   --band-3: #f06478;
   --pin-stroke: #f4f4f4;
+  --glyph: #15171b;
 }
 
 [data-band='0'] { --pin: var(--band-0); }
@@ -129,7 +131,8 @@ button { cursor: pointer; }
 }
 .chip[aria-pressed='true'] .chip-count { background: rgb(127 127 127 / 0.35); color: inherit; }
 .chip-icon, .legend-shape, .list-shape { display: inline-flex; width: 16px; height: 16px; }
-.chip-icon .shape, .legend-shape .shape, .list-shape .shape { width: 100%; height: 100%; fill: currentColor; }
+.chip-icon svg, .legend-shape svg { width: 100%; height: 100%; fill: currentColor; }
+
 .chip-swatch {
   width: 12px; height: 12px; border-radius: 50%; background: var(--pin);
   box-shadow: 0 0 0 1.5px var(--pin-stroke), 0 0 0 2.5px var(--border);
@@ -143,14 +146,21 @@ button { cursor: pointer; }
 
 /* ---------- Pins ---------- */
 .pin {
-  width: 30px; height: 30px; padding: 0; border: 0; background: none; display: grid; place-items: center;
+  width: 34px; height: 34px; padding: 0; border: 0; background: none; display: grid; place-items: center;
   filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.45)); transition: transform 0.15s ease;
 }
-.pin .shape { width: 24px; height: 24px; fill: var(--pin); stroke: var(--pin-stroke); stroke-width: 2; stroke-linejoin: round; }
-.pin:hover .shape { transform: scale(1.1); }
+.pin-art { position: relative; display: grid; place-items: center; width: 100%; height: 100%; }
+.pin-art > svg { grid-area: 1 / 1; }
+.pin-art .shape { width: 100%; height: 100%; fill: var(--pin); stroke: var(--pin-stroke); stroke-width: 1.6; stroke-linejoin: round; }
+.pin-art .glyph { width: 42%; height: 42%; fill: var(--glyph); }
+/* Nudge the glyph toward the visual centre of shapes that aren't symmetric. */
+.pin-art[data-tier='hard'] .glyph { transform: translateY(14%); width: 36%; }
+.pin-art[data-tier='must-try'] .glyph { width: 32%; height: 32%; transform: translateY(6%); }
+.pin .pin-art { width: 32px; height: 32px; }
+.pin:hover .pin-art { transform: scale(1.1); }
 .pin.is-visited { opacity: 0.6; }
 .pin.is-selected { transform: scale(1.45); opacity: 1; }
-.pin.is-selected .shape { stroke: var(--text); stroke-width: 2.4; }
+.pin.is-selected .shape { stroke: var(--text); stroke-width: 2; }
 .pin-badge {
   position: absolute; top: 0; right: 0; width: 10px; height: 10px; border-radius: 50%;
   background: #e0245e; border: 2px solid var(--pin-stroke);
@@ -189,8 +199,7 @@ button { cursor: pointer; }
 .detail header > div { flex: 1; min-width: 0; }
 .detail h2 { font-size: 1.15rem; margin-top: 4px; }
 .detail header p { margin: 2px 0 0; }
-.detail-shape { flex: none; width: 30px; height: 30px; margin-top: 4px; }
-.detail-shape .shape { width: 100%; height: 100%; fill: var(--pin); stroke: var(--pin-stroke); stroke-width: 1.5; }
+.detail-shape { flex: none; width: 34px; height: 34px; margin-top: 2px; }
 .detail-stats { display: flex; gap: 24px; margin: 12px 0 0; }
 .detail-stats dt { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
 .detail-stats dd { margin: 0; font-weight: 600; }
@@ -237,8 +246,7 @@ button { cursor: pointer; }
 }
 .list-row:hover { background: var(--surface-2); }
 .list-row[aria-current='true'] { background: var(--surface-2); box-shadow: inset 4px 0 0 var(--pin); }
-.list-shape { width: 22px; height: 22px; flex: none; }
-.list-shape .shape { fill: var(--pin); stroke: var(--pin-stroke); stroke-width: 1.5; }
+.list-shape { width: 28px; height: 28px; flex: none; }
 .list-main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
 .list-name { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .list-dist { flex: none; font-variant-numeric: tabular-nums; font-weight: 600; }
@@ -269,3 +277,14 @@ button { cursor: pointer; }
 @media (prefers-reduced-motion: reduce) {
   .pin { transition: none; }
 }
+
+/* ---------- Out-of-area notice ---------- */
+.coverage {
+  position: absolute; z-index: 4; top: 10px; left: 10px; right: 56px;
+  padding: 10px 12px; font-size: 0.875rem;
+  background: var(--surface); color: var(--text); border-radius: var(--radius); box-shadow: var(--shadow);
+}
+.coverage p { margin: 0 0 8px; }
+.coverage-actions { display: flex; gap: 8px; align-items: center; }
+.coverage .primary-btn { min-height: 36px; }
+@media (min-width: 900px) { .coverage { right: auto; width: 380px; } }

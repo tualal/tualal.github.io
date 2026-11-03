@@ -1,6 +1,6 @@
 import type { Band, Category, Tier } from '../types';
 import { BAND_LABELS, BANDS } from '../lib/geo';
-import { CATEGORY_LABELS, shapeSvg, TIER_LABELS } from '../lib/encoding';
+import { CATEGORY_LABELS, glyphSvg, shapeSvg, TIER_LABELS } from '../lib/encoding';
 import { type FacetCounts, type Filters, visibleTiers } from '../lib/filters';
 
 interface Props {
@@ -75,7 +75,13 @@ export function FilterBar({ filters, counts, onChange }: Props) {
 
       <div className="chip-row" role="group" aria-label="Category">
         {(['all', 'trails', 'food'] as const).map((c) => (
-          <Chip key={c} pressed={filters.category === c} count={counts.category[c]} onClick={() => setCategory(c)}>
+          <Chip
+            key={c}
+            pressed={filters.category === c}
+            count={counts.category[c]}
+            icon={c === 'all' ? undefined : glyphSvg(c)}
+            onClick={() => setCategory(c)}
+          >
             {c === 'all' ? 'All' : CATEGORY_LABELS[c]}
           </Chip>
         ))}

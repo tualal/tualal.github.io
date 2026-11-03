@@ -6,7 +6,7 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 // emitted asset explicitly (also precached by the service worker, so maps work offline).
 import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?url';
 import type { Home, SpotWithDistance } from '../types';
-import { shapeSvg, TIER_LABELS, CATEGORY_LABELS } from '../lib/encoding';
+import { pinSvg, TIER_LABELS, CATEGORY_LABELS } from '../lib/encoding';
 import { BAND_LABELS } from '../lib/geo';
 import { FALLBACK_STYLE, STYLE_URLS } from '../lib/mapStyle';
 
@@ -44,7 +44,7 @@ function paintPin(el: HTMLElement, s: SpotWithDistance, selected: boolean, saved
   el.classList.toggle('is-selected', selected);
   el.classList.toggle('is-saved', saved);
   el.classList.toggle('is-visited', visited);
-  el.innerHTML = shapeSvg(s.tier) + (saved ? '<span class="pin-badge" aria-hidden="true"></span>' : '');
+  el.innerHTML = pinSvg(s.tier) + (saved ? '<span class="pin-badge" aria-hidden="true"></span>' : '');
   el.setAttribute(
     'aria-label',
     `${s.name}: ${CATEGORY_LABELS[s.category]}, ${TIER_LABELS[s.tier]}, ${BAND_LABELS[s.band]}` +

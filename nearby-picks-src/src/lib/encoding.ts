@@ -41,3 +41,21 @@ const SHAPES: Record<Tier, string> = {
 export function shapeSvg(tier: Tier, extraClass = ''): string {
   return `<svg class="shape ${extraClass}" viewBox="0 0 24 24" aria-hidden="true">${SHAPES[tier]}</svg>`;
 }
+
+/** Category glyph drawn inside every pin (16×16 viewBox): mountain for trails, fork & knife for food. */
+const GLYPHS: Record<Category, string> = {
+  trails: '<path d="M0.5 14.5 L5.8 4.5 L8.6 9.4 L10.6 6.4 L15.5 14.5 Z" />',
+  food:
+    '<path d="M2.5 1 V6.2 A2 2 0 0 0 4 8.1 V15 H5.6 V8.1 A2 2 0 0 0 7.1 6.2 V1 H6.1 V5.4 H5.3 V1 H4.3 V5.4 H3.5 V1 Z" />' +
+    '<path d="M12.6 1 C10.6 1.8 9.6 4 9.6 6.8 V9.4 H11 V15 H12.6 Z" />',
+};
+
+export function glyphSvg(category: Category, extraClass = ''): string {
+  return `<svg class="glyph ${extraClass}" viewBox="0 0 16 16" aria-hidden="true">${GLYPHS[category]}</svg>`;
+}
+
+/** A complete pin graphic (tier shape + category glyph), used on the map, legend, list and card. */
+export function pinSvg(tier: Tier): string {
+  const category = categoryOfTier(tier);
+  return `<span class="pin-art" data-tier="${tier}">${shapeSvg(tier)}${glyphSvg(category)}</span>`;
+}

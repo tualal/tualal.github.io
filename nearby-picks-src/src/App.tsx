@@ -61,6 +61,14 @@ export default function App() {
       }),
     [home.lat, home.lon],
   );
+  // The data is a fixed snapshot of one area. Say so when home moves somewhere it doesn't cover,
+  // instead of silently showing far-away pins.
+  const nearbyCount = withDistance.filter((s) => s.miles <= 15).length;
+  const nearestMiles = Math.min(...withDistance.map((s) => s.miles));
+  const outOfArea = nearbyCount < 3;
+  const [dismissedFor, setDismissedFor] = useState<string | null>(null);
+  const homeKey = `${home.lat.toFixed(3)},${home.lon.toFixed(3)}`;
+
   const visible = useMemo(() => applyFilters(withDistance, filters), [withDistance, filters]);
   const counts = useMemo(() => facetCounts(withDistance, filters), [withDistance, filters]);
 
@@ -152,6 +160,24 @@ export default function App() {
           onPickHome={(lat, lon) => setHomeAndClose({ lat, lon, label: 'Dropped pin' })}
           focusToken={focusToken}
         />
+        {outOfArea && !pickingHome && dismissedFor !== homeKey && (
+          <div className="coverage" role="status">
+            <p>
+              <strong>{nearbyCount === 0 ? 'No spots' : `Only ${nearbyCount} spot${nearbyCount === 1 ? '' : 's'}`} within 15 mi of
+              this home.</strong>{' '}
+              Nearby Picks only has data for the Gresham and east Portland area so far, so moving home recolors the
+              pins but can't add new ones. Nearest spot: {Math.round(nearestMiles)} mi.
+            </p>
+            <div className="coverage-actions">
+              <button type="button" className="primary-btn" onClick={() => setHome(DEFAULT_HOME)}>
+                Back to Gresham
+              </button>
+              <button type="button" className="link-btn" onClick={() => setDismissedFor(homeKey)}>
+                Dismiss
+              </button>
+            </div>
+          </div>
+        )}
         {pickingHome && (
           <div className="picking-hint" role="status">
             Tap the map to set your home point

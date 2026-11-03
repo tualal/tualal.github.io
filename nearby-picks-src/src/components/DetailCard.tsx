@@ -1,5 +1,5 @@
 import type { SpotWithDistance } from '../types';
-import { CATEGORY_LABELS, shapeSvg, TIER_LABELS } from '../lib/encoding';
+import { CATEGORY_LABELS, pinSvg, TIER_LABELS } from '../lib/encoding';
 import { BAND_LABELS, formatMiles } from '../lib/geo';
 import type { SpotMark } from '../lib/storage';
 
@@ -29,7 +29,7 @@ export function DetailCard({ spot, homeLabel, isMarked, onToggleMark, onClose }:
   return (
     <article className="detail" aria-labelledby="detail-title" data-band={spot.band}>
       <header>
-        <span className="detail-shape" dangerouslySetInnerHTML={{ __html: shapeSvg(spot.tier) }} />
+        <span className="detail-shape" dangerouslySetInnerHTML={{ __html: pinSvg(spot.tier) }} />
         <div>
           <h2 id="detail-title">{spot.name}</h2>
           <p className="muted">

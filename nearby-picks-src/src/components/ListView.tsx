@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import type { SpotWithDistance, Tier } from '../types';
-import { ALL_TIERS, CATEGORY_LABELS, categoryOfTier, shapeSvg, TIER_LABELS } from '../lib/encoding';
+import { ALL_TIERS, CATEGORY_LABELS, categoryOfTier, pinSvg, shapeSvg, TIER_LABELS } from '../lib/encoding';
 import { formatMiles } from '../lib/geo';
 import type { SpotMark } from '../lib/storage';
 
@@ -56,7 +56,7 @@ export function ListView({ spots, selectedId, showCategory, isMarked, onSelect }
                   aria-current={s.id === selectedId ? 'true' : undefined}
                   onClick={() => onSelect(s.id)}
                 >
-                  <span className="list-shape" dangerouslySetInnerHTML={{ __html: shapeSvg(s.tier) }} />
+                  <span className="list-shape" dangerouslySetInnerHTML={{ __html: pinSvg(s.tier) }} />
                   <span className="list-main">
                     <span className="list-name">{s.name}</span>
                     <span className="muted small">

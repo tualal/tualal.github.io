@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { BAND_LABELS, BANDS } from '../lib/geo';
-import { CATEGORY_LABELS, shapeSvg, TIER_LABELS, TIERS_BY_CATEGORY } from '../lib/encoding';
+import { CATEGORY_LABELS, glyphSvg, shapeSvg, TIER_LABELS, TIERS_BY_CATEGORY } from '../lib/encoding';
 import { readJson, writeJson } from '../lib/storage';
 
 export function Legend() {
@@ -34,10 +34,13 @@ export function Legend() {
           </li>
         ))}
       </ul>
-      <h3>Shape = tier</h3>
+      <h3>Icon = category · Shape = tier</h3>
       {(['trails', 'food'] as const).map((c) => (
         <ul key={c} className="legend-shapes">
-          <li className="legend-cat">{CATEGORY_LABELS[c]}</li>
+          <li className="legend-cat">
+            <span className="legend-shape" dangerouslySetInnerHTML={{ __html: glyphSvg(c) }} />
+            {CATEGORY_LABELS[c]}
+          </li>
           {TIERS_BY_CATEGORY[c].map((t) => (
             <li key={t}>
               <span className="legend-shape" dangerouslySetInnerHTML={{ __html: shapeSvg(t) }} />
